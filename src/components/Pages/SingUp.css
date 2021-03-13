@@ -1,1 +1,64 @@
+.sign-up {
+  background-image: url("../../assets/images/img-8.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-size: 100px;
+  height: 90vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* color: #252e48; */
+}
+
+.signUp--title {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  text-transform: uppercase;
+}
+
+form {
+  font-size: 2rem;
+  width: 40vw;
+}
+
+.form--name,
+.form--email,
+.form--password,
+.form--confirmPassword {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  font-size: 16px;
+  margin-bottom: 0.5rem;
+}
+input::placeholder {
+  color: #6e6969;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="confirmPassword"] {
+  padding: 9px 6px;
+  margin-bottom: 0.8rem;
+  outline: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.signup--row {
+  margin-top: 0.8rem;
+  font-size: 16px;
+  width: 40vw;
+}
+a {
+  text-decoration: none;
+  color: #1a1818;
+  padding-left: 4px;
+}
 
