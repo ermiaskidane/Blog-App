@@ -1,1 +1,63 @@
+.services {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
 
+.services--sidebar {
+  position: fixed;
+  top: 7rem;
+  left: 0;
+  width: 10vw;
+  height: 100%;
+  z-index: 100;
+  /* background-color: red; */
+  padding-left: 0.5rem;
+
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  grid-template-rows: repeat(3, min-content);
+  justify-content: start;
+  align-content: center;
+}
+
+svg:first-of-type,
+svg:nth-of-type(2),
+svg:nth-of-type(3){
+    width: 60px;
+    height: 35px;
+    fill: gray;
+    /* background-color: blue; */
+    padding-bottom: 0.8rem;
+}
+span:first-of-type{
+    font-size: 14px;
+}
+
+.services--detail{
+    /* width: 80%; */
+    margin-left: 12vw;
+    margin-top: 1rem;
+}
+
+h1 {
+    font-size: 2.3rem;
+    margin-bottom: 0.7rem;
+}
+
+figure{ 
+    margin-bottom: 0.7rem;
+    width: 100%;
+}
+
+figure img {
+    width: 86vw;
+    height: 60vh;
+}
+p {
+    padding-bottom: 1rem;
+}
+
+.detail--content{
+    margin-bottom: 3rem;
+}
