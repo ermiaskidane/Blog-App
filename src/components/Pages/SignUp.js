@@ -59,7 +59,7 @@ const SignUp = () => {
 
             <div className="signup--row">
                 <p> Have an Account? 
-                    <Link to="/">Login</Link>
+                    <Link to="/sign-in">Login</Link>
                 </p>
             </div>
         </div>   
