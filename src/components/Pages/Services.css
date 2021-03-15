@@ -27,7 +27,7 @@ svg:nth-of-type(3){
     width: 60px;
     height: 35px;
     fill: gray;
-    /* background-color: blue; */
+    cursor: pointer;
     padding-bottom: 0.8rem;
 }
 span:first-of-type{
