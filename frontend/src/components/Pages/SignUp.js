@@ -8,7 +8,7 @@ const SignUp = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-
+ 
     return (
         <div className="sign-up">
             <h1 className="signUp--title">Sing Up</h1>

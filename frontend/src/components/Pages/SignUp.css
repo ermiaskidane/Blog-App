@@ -1,4 +1,5 @@
-.sign-up {
+.sign-up,
+.sign-in {
   background-image: url("../../assets/images/img-8.jpg");
   background-position: center;
   background-size: cover;
@@ -14,7 +15,8 @@
   /* color: #252e48; */
 }
 
-.signUp--title {
+.signUp--title,
+.signIn--title {
   font-size: 1.5rem;
   margin-top: 2rem;
   text-transform: uppercase;
@@ -51,7 +53,8 @@ input[type="confirmPassword"] {
   border-radius: 3px;
 }
 
-.signup--row {
+.signup--row,
+.signIn--row {
   margin-top: 0.8rem;
   font-size: 16px;
   width: 40vw;
@@ -61,4 +64,3 @@ a {
   color: #1a1818;
   padding-left: 4px;
 }
-

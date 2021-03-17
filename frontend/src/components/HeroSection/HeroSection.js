@@ -3,7 +3,7 @@ import '../../App.css';
 import { Button } from '../Button/Button';
 import './HeroSection.css';
 
-function HeroSection() {
+const HeroSection = () => {
   return (
     <div className='hero-container'>
       <video src='/videos/video-1.mp4' autoPlay loop muted />
@@ -21,7 +21,7 @@ function HeroSection() {
           className='btns'
           buttonStyle='btn--primary'
           buttonSize='btn--large'
-          onClick={console.log('watch trailer')}
+          onClick={console.log('hey')}
         >
           WATCH TRAILER <i className='far fa-play-circle' />
         </Button>
