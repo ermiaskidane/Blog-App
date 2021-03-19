@@ -1,5 +1,5 @@
 import React from 'react'
-import "./Footer.css"
+import "./Footer.scss"
 import {Link } from "react-router-dom"
 import {Button} from "../Button/Button"
 
@@ -13,7 +13,7 @@ const Footer = () => {
                 <p className="footer-subscription-text">
                     You can unsubscribe at any time
                 </p>
-                <div className="input-areas">
+                <div className="input-areas"> 
                     <form>
                         <input 
                         type="email" 

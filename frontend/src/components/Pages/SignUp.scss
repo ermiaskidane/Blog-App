@@ -27,10 +27,14 @@ form {
   width: 40vw;
 }
 
-.form--name,
-.form--email,
-.form--password,
-.form--confirmPassword {
+.sign-up .form--name,
+.sign-up .form--email,
+.sign-up .form--password,
+.sign-up .form--confirmPassword,
+.sign-in .form--name,
+.sign-in .form--email,
+.sign-in .form--password,
+.sign-in .form--confirmPassword {
   display: flex;
   flex-direction: column;
 }
@@ -42,10 +46,10 @@ form label {
 input::placeholder {
   color: #6e6969;
 }
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="confirmPassword"] {
+.form--name input[type="text"],
+.form--email input[type="email"],
+.form--password input[type="password"],
+.form--confirmPassword input[type="confirmPassword"] {
   padding: 9px 6px;
   margin-bottom: 0.8rem;
   outline: none;

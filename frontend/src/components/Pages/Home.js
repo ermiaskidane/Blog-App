@@ -1,5 +1,5 @@
 import HeroSection from "../HeroSection/HeroSection"
-import "../../App.css"
+import "../../App.scss"
 import Cards from "../Cards/Cards"
 import Footer from "../Footer/Footer"
 

@@ -5,8 +5,7 @@
   font-family: "PT Sans", sans-serif;
 }
 
-.home,
-.products {
+.home {
   display: flex;
   height: 90vh;
   align-items: center;
@@ -23,11 +22,11 @@
   font-size: 100px;
 } */
 
-.products {
+/* .products {
   background-image: url("./assets/images/img-1.jpg");
   background-position: center;
   background-size: fill;
   background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
-}
+} */

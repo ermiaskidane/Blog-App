@@ -1,7 +1,7 @@
 import React from "react";
 import Sprite from "../../assets/images/sprite.svg";
-import "../../App.css"
-import "./Services.css"
+// import "../../App.scss"
+import "./Services.scss"
 
 const Services = () => {
     return (

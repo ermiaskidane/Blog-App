@@ -1,7 +1,7 @@
 import React, {useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
-import "./SignUp.css"
-import "../../App.css"
+import "./SignUp.scss"
+import "../../App.scss"
 
 const SignUp = () => {
     const [name, setName] = useState("")
@@ -54,7 +54,7 @@ const SignUp = () => {
                     />
                 </div>
 
-                <button type="submit" className="btn btn-primary">Register</button>
+                <button type="submit" className="btn btn-primary">Sign Up</button>
             </form>
 
             <div className="signup--row">

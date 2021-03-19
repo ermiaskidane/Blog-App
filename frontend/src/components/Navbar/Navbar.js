@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { Link} from "react-router-dom"
 import { Button } from '../Button/Button'
-import "./Navbar.css"
+import "./Navbar.scss"
 
 const Navbar = () => {
     const [click, setClick] = useState(false)
@@ -29,7 +29,7 @@ const Navbar = () => {
         <>
            <nav className="navbar">
                <div className="navbar-container">
-                   <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+                   <Link to="/blogs/all" className="navbar-logo" onClick={closeMobileMenu}>
                        TRVL <i className="fab fa-typo3"/>
                    </Link>
                    <div className="menu-icon" onClick={handleClick}>

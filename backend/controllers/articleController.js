@@ -1,6 +1,6 @@
 import asyncHandler from "express-async-handler"
 import Article from "../models/article.js"
-
+ 
 
 // @desc get all articles
 // @route get /api/articles/all
@@ -14,6 +14,17 @@ if(fetchedBlog){
     res.status(404)
     throw new Error("blog not found")
 }
+})
+
+const getEditArticle = asyncHandler(async(req, res) => {
+    const article = await Article.findById(req.params.id)
+
+    if(article){
+        res.status(200).json(article)
+    } else {
+        res.status(404)
+        throw new Error("editing article couldn't found")
+    }
 })
 
 const readArticle = asyncHandler(async(req, res) => {
@@ -79,4 +90,4 @@ const deleteArticle = asyncHandler(async(req, res) => {
     }
 })
 
-export {getArticle, postArticle, readArticle, updateArticle, deleteArticle }
+export {getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle }
