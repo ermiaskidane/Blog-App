@@ -71,7 +71,6 @@ const Blog = ({match, history}) => {
             </div>
             <div className="blog__content--more">
                 <h2>More Of Articles</h2>
-                <hr/>
                 <ul className="blog__content--lists">
                     <li className="content__list">
                         <h3>The Weekend Experiment that will change Your Life</h3>
@@ -103,6 +102,13 @@ const Blog = ({match, history}) => {
                         <p>Laura vanderkam</p>
                         <img src="/images/img-2.jpg" alt="author"/>
                     </li>
+                </ul>
+            </div>
+            <div className="blog__footer">
+                <ul className="blog__footer--lists">
+                    <li>Blogs</li>
+                    <li>About</li>
+                    <li>Helps</li>
                 </ul>
             </div>
           </div>
