@@ -1,17 +1,43 @@
 import React, {useState} from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios"
-import "./Products.scss"
+import "./AddBlog.scss"
 // import "../../App.css"
 
 const AddBlog = ({history}) => {
     const [title, setTitle] = useState("")
+    const [image, setImage] = useState('')
     const [description, setDescription] = useState("")
     const [markdown, setMarkdown] = useState("")
+    const [uploading, setUploading] = useState(false)
+
+    const uploadFileHandler = async (e) => {
+        console.log(e.target)
+        const file = e.traget.files[0]
+        const formData = new FormData()
+        formData.append("image", file)
+        setUploading(true)
+
+        try {
+            const config = {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                },
+            }
+
+            const { data } = await axios.post("api/upload", formData, config)
+
+            setImage(data)
+            setUploading(false)
+        } catch (error) {
+            console.error(error)
+            setUploading(false)
+          }
+    }
 
     const submitHandler = (e) => {
         e.preventDefault()
-        const data = {title, description, markdown}
+        const data = {title, image, description, markdown}
 
         const articleData = async () => {
             const blogPost = await axios.post("/api/articles", data)
@@ -33,6 +59,17 @@ const AddBlog = ({history}) => {
                     onChange={(e) => setTitle(e.target.value)}
                     className="form-control"
                     placeholder="enter the title"
+                    required
+                    />
+                    <input 
+                    type="file"
+                    name="image"
+                    id="image"
+                    value={image}
+                    // onChange={(e) => setImage(e.target.value)}
+                    onChange={uploadFileHandler}
+                    className="form-control"
+                    placeholder="enter the img url"
                     required
                     />
                     <textarea 
