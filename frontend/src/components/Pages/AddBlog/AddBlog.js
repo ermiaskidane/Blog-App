@@ -4,7 +4,7 @@ import axios from "axios"
 import "./Products.scss"
 // import "../../App.css"
 
-const Products = ({history}) => {
+const AddBlog = ({history}) => {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [markdown, setMarkdown] = useState("")
@@ -63,4 +63,4 @@ const Products = ({history}) => {
     )
 }
 
-export default Products
+export default AddBlog
