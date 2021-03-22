@@ -18,6 +18,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/articles", articleRoutes)
+app.use("/api/upload", uploadRoutes)
 
 // // Custom Error Handler for Routes does not exist
 // app.use(notFound);
