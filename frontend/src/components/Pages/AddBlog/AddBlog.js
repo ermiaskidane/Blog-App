@@ -12,28 +12,28 @@ const AddBlog = ({history}) => {
     const [uploading, setUploading] = useState(false)
 
     const uploadFileHandler = async (e) => {
-        console.log(e.target)
-        const file = e.traget.files[0]
+        console.log(e.target.files)
+        const file = e.target.files[0]
         const formData = new FormData()
-        formData.append("image", file)
+        formData.append('image', file)
         setUploading(true)
-
+    
         try {
-            const config = {
-                headers: {
-                    "Content-Type": "multipart/form-data"
-                },
-            }
-
-            const { data } = await axios.post("api/upload", formData, config)
-
-            setImage(data)
-            setUploading(false)
-        } catch (error) {
-            console.error(error)
-            setUploading(false)
+          const config = {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
           }
-    }
+    
+          const { data } = await axios.post('/api/upload', formData, config)
+    
+          setImage(data)
+          setUploading(false)
+        } catch (error) {
+          console.error(error)
+          setUploading(false)
+        }
+      }
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -65,8 +65,6 @@ const AddBlog = ({history}) => {
                     type="file"
                     name="image"
                     id="image"
-                    value={image}
-                    // onChange={(e) => setImage(e.target.value)}
                     onChange={uploadFileHandler}
                     className="form-control"
                     placeholder="enter the img url"
