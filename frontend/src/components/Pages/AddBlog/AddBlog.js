@@ -38,7 +38,6 @@ const AddBlog = ({history}) => {
 
     const submitHandler = async (e) => {
         e.preventDefault()
-
         const data = {author, title, image, description, markdown}
 
         const articleData = async () => {
@@ -65,6 +64,15 @@ const AddBlog = ({history}) => {
                     required
                     />
 
+                    <input 
+                    type="text"
+                    name="name"
+                    id="name"
+                    onChange={(e) => setAuthor(e.target.value)}
+                    className="form-control"
+                    placeholder="Author name"
+                    required
+                    />
                     <input 
                     type="text"
                     name="title"
