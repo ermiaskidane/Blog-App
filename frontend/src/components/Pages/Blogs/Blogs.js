@@ -27,7 +27,7 @@ const Blogs = () => {
                       <li className="blogs__item">
                         <Link className="blogs__item__link" to={`/blog/${b.slug}`}>
                             <figure className="blogs__item__pic-wrap" data-category="Adventure">
-                                <img src={`${process.env.PUBLIC_URL}/images/img-9.jpg`} alt="Travel Image" className="blogs__item__img"/>
+                                <img src={b.image ? b.image :`${process.env.PUBLIC_URL}/images/img-9.jpg`} alt="Travel Image" className="blogs__item__img"/>
                             </figure>
                             <div className="blogs__item__info">
                                 <h5 className="blogs__item__text">{b.description}</h5>
