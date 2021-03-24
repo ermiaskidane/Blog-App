@@ -1,12 +1,14 @@
 import express from "express"
 import dotenv from "dotenv"
+import path from "path"
 import colors from "colors"
 
 import articleRoutes from "./routes/articleRoutes.js"
+import uploadRoutes from "./routes/uploadRoutes.js"
 import connectDB from "./config/db.js"
 
 dotenv.config()
-
+ 
 connectDB()
 
 const app = express()
@@ -18,6 +20,10 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/articles", articleRoutes)
+app.use("/api/upload", uploadRoutes)
+
+const __dirname = path.resolve() // c/z we use ES6 module we need to mimic
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")))
 
 // // Custom Error Handler for Routes does not exist
 // app.use(notFound);

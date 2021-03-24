@@ -7,7 +7,7 @@ import {
      updateArticle,
      deleteArticle
     } from "../controllers/articleController.js"
- 
+  
 const router = express.Router()
 
 router.get("/all", getArticle)

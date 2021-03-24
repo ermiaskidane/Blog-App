@@ -42,13 +42,13 @@ const Navbar = () => {
                            </Link>
                        </li> 
                        <li className="nav-item">
-                           <Link to="/services" className="nav-links" onClick={closeMobileMenu}>
-                               services
+                           <Link to="/blogs/all" className="nav-links" onClick={closeMobileMenu}>
+                               Blogs
                            </Link>
                        </li>
                        <li className="nav-item">
                            <Link to="/products" className="nav-links" onClick={closeMobileMenu}>
-                               Products
+                               Add Blog
                            </Link>
                        </li>
                        <li className="nav-item">

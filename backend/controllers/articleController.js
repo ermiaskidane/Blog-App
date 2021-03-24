@@ -43,13 +43,18 @@ const readArticle = asyncHandler(async(req, res) => {
 // @access Public
 const postArticle = asyncHandler(async(req, res) => {
     const {
+        author,
         title,
+        image,
         description,
         markdown,
         } = req.body 
     
+        // console.log(req.file, "image")
         const article = await Article.create({
+            author,
             title,
+            image,
             description,
             markdown
         })

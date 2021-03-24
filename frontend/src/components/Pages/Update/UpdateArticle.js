@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios"
-import "../AddBlog/Products.scss"
+import "../AddBlog/AddBlog.scss"
 // import "../../App.css"
 
 const UpdateArticle = ({match, history}) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import CardItem from "./CardItem"
 import "./Cards.scss"
-
+ 
 const Cards = () => {
     return (
       <div className='cards'>
