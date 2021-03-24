@@ -53,13 +53,13 @@
     background: #fff;
     border-radius: 4px;
     // box-shadow: 5px 5px 10px #585858;
-    width: 500px;
+     width: inherit;
     outline: none;
   }
 
   ::-webkit-file-upload-button {
-    color: #fff;
-    background: #9c9c9c;
+    color: #ffffff;
+    background: #777777;
     padding: 11px;
     border: none;
     border-radius: 3px;
@@ -68,7 +68,7 @@
   }
 
   ::-webkit-file-upload-button:hover {
-    background: #616161;
+     background: #616161;
   }
 
   .form__fields input[type="text"] {
