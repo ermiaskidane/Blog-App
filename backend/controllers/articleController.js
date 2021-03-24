@@ -43,12 +43,14 @@ const readArticle = asyncHandler(async(req, res) => {
 // @access Public
 const postArticle = asyncHandler(async(req, res) => {
     const {
+        author,
         title,
         description,
         markdown,
         } = req.body 
     
         const article = await Article.create({
+            author,
             title,
             description,
             markdown
