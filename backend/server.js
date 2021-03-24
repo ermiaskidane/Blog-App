@@ -21,6 +21,9 @@ app.get("/", (req, res) => {
 app.use("/api/articles", articleRoutes)
 app.use("/api/upload", uploadRoutes)
 
+const __dirname = path.resolve() 
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")))
+
 // // Custom Error Handler for Routes does not exist
 // app.use(notFound);
 
