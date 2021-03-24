@@ -38,7 +38,7 @@ const AddBlog = ({history}) => {
 
     const submitHandler = (e) => {
         e.preventDefault()
-        const data = {title, image, description, markdown}
+        const data = {author, title, image, description, markdown}
 
         const articleData = async () => {
             const blogPost = await axios.post("/api/articles", data)
