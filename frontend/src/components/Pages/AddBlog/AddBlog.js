@@ -5,6 +5,7 @@ import "./AddBlog.scss"
 // import "../../App.css"
 
 const AddBlog = ({history}) => {
+    const [author, setAuthor] = useState("")
     const [title, setTitle] = useState("")
     const [image, setImage] = useState('')
     const [description, setDescription] = useState("")
@@ -51,6 +52,15 @@ const AddBlog = ({history}) => {
             <h1>New Article</h1>
             <form onSubmit={submitHandler} id="form-products">
                 <div className="form__fields">
+                    <input 
+                    type="text"
+                    name="name"
+                    id="name"
+                    onChange={(e) => setAuthor(e.target.value)}
+                    className="form-control"
+                    placeholder="Author name"
+                    required
+                    />
                     <input 
                     type="text"
                     name="title"
