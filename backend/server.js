@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import path from "path"
 import colors from "colors"
 
+import userRoutes from "./routes/userRoutes.js"
 import articleRoutes from "./routes/articleRoutes.js"
 import uploadRoutes from "./routes/uploadRoutes.js"
 import connectDB from "./config/db.js"
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
     res.send("Api is running")
 })
 
+app.use("/api/users", userRoutes)
 app.use("/api/articles", articleRoutes)
 app.use("/api/upload", uploadRoutes)
 
