@@ -66,15 +66,6 @@ const AddBlog = ({history}) => {
 
                     <input 
                     type="text"
-                    name="name"
-                    id="name"
-                    onChange={(e) => setAuthor(e.target.value)}
-                    className="form-control"
-                    placeholder="Author name"
-                    required
-                    />
-                    <input 
-                    type="text"
                     name="title"
                     id="title"
                     onChange={(e) => setTitle(e.target.value)}
