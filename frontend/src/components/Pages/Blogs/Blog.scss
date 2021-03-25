@@ -19,7 +19,7 @@
         padding: 0 2.5rem;
       }
 
-      h2 {
+  h2 {
         font-size: 35px;
         text-transform: capitalize;
         letter-spacing: 1px;
@@ -28,12 +28,24 @@
         // font-family: "Lora", serif;
         // font-family: "Open Sans", sans-serif;
         font-family: "Playfair Display", serif;
-        margin-bottom: 1.5rem;
+        margin-bottom: 0.5rem;
 
         @media only screen and (max-width: 500px) {
           font-size: 26px;
           word-spacing: 4px;
         }
+      }
+
+      .author {
+        color: #4d4d4d;
+        font-size: 14px;
+        margin: 0;
+        padding-bottom: 3px;
+      }
+      .created--time {
+        color: #4d4d4d;
+        font-size: 13px;
+        padding-bottom: 8px;
       }
     }
 
