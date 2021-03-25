@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { NavLink } from "react-router-dom";
+import moment from "moment"
 import axios from "axios"
 import Sprite from "../../../assets/images/sprite.svg";
 import "./Blog.scss"
@@ -53,7 +54,8 @@ const Blog = ({match, history}) => {
             <div className="blog__content--container">
                 <div className="blog__content--category">
                     <h2>{blog.title}</h2>
-                    <p>Author: {blog.author}</p>
+                    <p className="author">Author: {blog.author}</p>
+                    <p className="created--time">{moment(blog.createdAt).utc().format("DD/MM/YY")}</p>
                     <div className="content--body">
                         <figure>
                             <img src={blog.image ? blog.image : `/images/img-3.jpg`} alt="passive income"/>
