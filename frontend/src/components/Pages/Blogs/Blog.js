@@ -26,7 +26,7 @@ const Blog = ({match, history}) => {
             const { data } = await axios.get("/api/articles/all/")
             // console.log(data)
             const customData = []
-            for(let i=0; i<6; i++){
+            for(let i=0; i<8; i++){
                 customData.push(data[i])
             }
             setLoading(false)
