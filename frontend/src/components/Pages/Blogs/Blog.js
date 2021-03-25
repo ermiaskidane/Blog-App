@@ -32,9 +32,7 @@ const Blog = ({match, history}) => {
         getBlogs()
     },[])
 
-    // const clickHandler = () => {
-    //     history.push(`/blog/${blog.slug}`)
-    // }
+
     return (
       <div className='blog'>
           <div className="blog__content">
