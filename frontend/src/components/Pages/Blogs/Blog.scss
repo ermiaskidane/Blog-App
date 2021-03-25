@@ -136,19 +136,23 @@
         grid-column-gap: 1.5rem;
         // margin-right: 1.5rem;
       }
-
-      h3 {
-        font-size: 18px;
-        font-weight: 400;
-        padding-bottom: 7px;
-        text-transform: capitalize;
-        letter-spacing: 0.7;
-        line-height: 1.2;
-        color: #313131;
-
-        grid-column: 1/2;
-        grid-row: 1/2;
+      
+      a {
+        padding: 0;
       }
+
+//       h3 {
+//         font-size: 18px;
+//         font-weight: 400;
+//         padding-bottom: 7px;
+//         text-transform: capitalize;
+//         letter-spacing: 0.7;
+//         line-height: 1.2;
+//         color: #313131;
+
+//         grid-column: 1/2;
+//         grid-row: 1/2;
+//       }
       p {
         font-size: 16px;
         font-weight: 300;
