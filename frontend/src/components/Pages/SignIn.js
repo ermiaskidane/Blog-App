@@ -6,11 +6,32 @@ import "../../App.scss"
 const SignIn = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    
+    const submitHandler = async (e) => {
+    e.preventDefault()
+    const data = {email,password}
+
+    const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+
+    const logIn = async () => {
+        const blogPost = await axios.post("/api/users/login", data, config)
+
+        localStorage.setItem('userInfo', JSON.stringify(blogPost))
+        return blogPost
+    }
+
+    logIn()
+    history.push("/")
+}
  
     return (
         <div className="sign-in">
             <h1 className="signIn--title">Sing Up</h1>
-            <form>
+            <form onSubmit={submitHandler}>
                 <div className="form--email">
                     <label htmlFor="email">Email</label>
                     <input 
