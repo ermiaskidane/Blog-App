@@ -1,9 +1,10 @@
 import React, {useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from 'react-router-dom'
 import "./SignUp.scss"
 import "../../App.scss"
 
-const SignIn = () => {
+const SignIn = ({history}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     
