@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react'
-import { Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import { Button } from '../Button/Button'
 import "./Navbar.scss"
 
 const Navbar = () => {
+    const [userName, setUserName] = useState("")
+    const [token, setToken] = useState(false)
+
     const [click, setClick] = useState(false)
     const [button, setButton] = useState(true)
 
@@ -19,12 +22,35 @@ const Navbar = () => {
         }
     }
 
+    // useEffect(() => {
+       
+    // }, [])
+
+    // fetch the username from the localStorage
+
     useEffect(() => {
         showButton()
-    }, [])
+        const storedData = JSON.parse(localStorage.getItem("userInfo"));
+        console.log(storedData, "local")
+        if(
+            storedData &&
+            storedData.data.token
+        ) {
+            setUserName(storedData.data.name)
+            setToken(storedData.data.token)
+            // console.log(storedData, "local")
+        }
+    }, [userName, token])
 
     window.addEventListener("resize", showButton)
 
+    const logoutHandler = () => {
+        setUserName(null)
+        setToken(null)
+        localStorage.removeItem("userInfo")
+    }
+
+    console.log(userName)
     return (
         <>
            <nav className="navbar">
@@ -51,13 +77,26 @@ const Navbar = () => {
                                Add Blog
                            </Link>
                        </li>
-                       <li className="nav-item">
-                           <Link to="/sign-up" className="nav-links-mobile" onClick={closeMobileMenu}>
-                               Sign up
-                           </Link>
+                       {userName ? (
+                           <li className="nav-item">
+                            <Link to="/" className="nav-links" 
+                            onClick={logoutHandler}>
+                                {userName}
+                            </Link>
+                           </li>
+                       ):(
+                        <li className="nav-item">
+                            <Link to="/sign-up" className="nav-links" onClick={closeMobileMenu}>
+                                Sign up
+                            </Link>
                        </li>
+                       )}
                    </ul>
-                   {button && <Button buttonStyle="btn--outline">SIGN UP</Button>}
+                   {/* {button && userName ? (
+                       <div className="nav-links-username" onClick={logoutHandler}>{userName}</div>
+                   ) : (
+                    <Button buttonStyle="btn--outline">SIGN UP</Button>
+                   )} */}
                 </div>
             </nav> 
         </>
