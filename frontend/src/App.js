@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import './App.scss';
 import Navbar from "./components/Navbar/Navbar"
 import Home from "./components/Pages/Home"
@@ -12,6 +12,7 @@ import SignUp from "./components/Pages/SignUp"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 const App = () => {
+
   return (
     <>
       <Router>
@@ -30,5 +31,5 @@ const App = () => {
     </>
   );
 } 
-
+ 
 export default App;

@@ -1,3 +1,4 @@
+import React, {useState, useEffect } from "react";
 import HeroSection from "../HeroSection/HeroSection"
 import "../../App.scss"
 import Cards from "../Cards/Cards"
