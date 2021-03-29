@@ -1,37 +1,37 @@
 import React, {useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux'
 import axios from "axios";
+
 import { Link } from 'react-router-dom'
+import { login } from '../../store/actions/userActions'
 import "./SignUp.scss"
 import "../../App.scss"
 
 const SignIn = ({history}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    
+
+    const dispatch = useDispatch()
+ 
+    const userLogin = useSelector((state) => state.userLogin)
+    const { loading, error, userInfo } = userLogin
+
+    useEffect(() => {
+        if(userInfo){
+            history.push("/")
+        }
+    },[history, userInfo])
+
     const submitHandler = async (e) => {
-    e.preventDefault()
-    const data = {email,password}
-
-    const config = {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-
-    const logIn = async () => {
-        const blogPost = await axios.post("/api/users/login", data, config)
-
-        localStorage.setItem('userInfo', JSON.stringify(blogPost))
-        return blogPost
-    }
-
-    logIn()
-    history.push("/")
-}
+        e.preventDefault()
+        dispatch(login(email, password))
+    } 
  
     return (
         <div className="sign-in">
             <h1 className="signIn--title">Sing Up</h1>
+            {error && <div style={{fontSize: "10px"}}>{error}</div>}
+            {loading && <div style={{fontSize: "10px"}}>Loading...</div>}
             <form onSubmit={submitHandler}>
                 <div className="form--email">
                     <label htmlFor="email">Email</label>
@@ -39,7 +39,6 @@ const SignIn = ({history}) => {
                     type="email" 
                     id="email" 
                     placeholder="Enter Email"
-                    value={email} 
                     onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
@@ -49,7 +48,6 @@ const SignIn = ({history}) => {
                     type="password" 
                     id="password" 
                     placeholder="Enter password"
-                    value={password} 
                     onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
