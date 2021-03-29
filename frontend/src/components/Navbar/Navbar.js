@@ -1,14 +1,19 @@
 import React, {useState, useEffect} from 'react'
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 import { Button } from '../Button/Button'
+import { logout } from "../../store/actions/userActions";
 import "./Navbar.scss"
 
 const Navbar = () => {
-    const [userName, setUserName] = useState("")
-    const [token, setToken] = useState(false)
 
     const [click, setClick] = useState(false)
     const [button, setButton] = useState(true)
+
+    const dispatch = useDispatch()
+
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
 
     const handleClick = () => setClick(!click)
     const closeMobileMenu = () => setClick(!click)
@@ -22,35 +27,18 @@ const Navbar = () => {
         }
     }
 
-    // useEffect(() => {
-       
-    // }, [])
-
-    // fetch the username from the localStorage
-
     useEffect(() => {
-        showButton()
-        const storedData = JSON.parse(localStorage.getItem("userInfo"));
-        console.log(storedData, "local")
-        if(
-            storedData &&
-            storedData.data.token
-        ) {
-            setUserName(storedData.data.name)
-            setToken(storedData.data.token)
-            // console.log(storedData, "local")
-        }
-    }, [userName, token])
+       showButton()
+    }, [])
 
     window.addEventListener("resize", showButton)
 
     const logoutHandler = () => {
-        setUserName(null)
-        setToken(null)
-        localStorage.removeItem("userInfo")
-    }
+        // console.log("logout")
+        dispatch(logout())
+      }
 
-    console.log(userName)
+    console.log(userInfo)
     return (
         <>
            <nav className="navbar">
@@ -77,11 +65,11 @@ const Navbar = () => {
                                Add Blog
                            </Link>
                        </li>
-                       {userName ? (
+                       {userInfo ? (
                            <li className="nav-item">
                             <Link to="/" className="nav-links" 
                             onClick={logoutHandler}>
-                                {userName}
+                                {userInfo.name}
                             </Link>
                            </li>
                        ):(
@@ -104,3 +92,4 @@ const Navbar = () => {
 }
 
 export default Navbar
+
