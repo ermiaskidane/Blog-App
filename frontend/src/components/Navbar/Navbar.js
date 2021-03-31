@@ -68,9 +68,13 @@ const Navbar = () => {
                        {userInfo ? (
                            <li className="nav-item">
                             <Link to="/" className="nav-links" 
-                            onClick={logoutHandler}>
+                            >
                                 {userInfo.name}
                             </Link>
+                            <div className="nav-dropdown">
+                                <p>Profile</p>
+                                <p onClick={logoutHandler}>Logout</p>
+                            </div>
                            </li>
                        ):(
                         <li className="nav-item">
