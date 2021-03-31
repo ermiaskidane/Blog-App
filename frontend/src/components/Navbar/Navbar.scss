@@ -60,6 +60,7 @@
   display: flex;
   align-items: center;
   text-decoration: none;
+  text-transform: capitalize;
   padding: 0.5rem 1rem;
   height: 100%;
 }
@@ -69,9 +70,28 @@
   transition: all 0.2s ease-out;
 }
 
-// .nav-item:last-child {
-//   display: none;
-// }
+.nav-userInfo:hover {
+  border-bottom: none;
+}
+
+.nav-dropdown {
+  position: absolute;
+
+  width: 6rem;
+  padding-top: 1rem;
+  background-color: #1c1b1b;
+  z-index: 10;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.nav-dropdown p {
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+}
 
 .fa-bars {
   color: #fff;
