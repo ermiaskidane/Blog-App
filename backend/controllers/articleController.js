@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler"
 import Article from "../models/article.js"
  
+
 // @desc get all articles
 // @route get /api/articles/all
 // @access Public
@@ -29,20 +30,6 @@ const getArticle = asyncHandler(async(req, res) => {
 // }
 })
 
-// @desc get all articles
-// @route get /api/articles/all
-// @access Public
-// const getArticle = asyncHandler(async(req, res) => {
-//     const fetchedBlog = await Article.find().sort({ createdAt: "desc"})
-
-// if(fetchedBlog){
-//     res.json(fetchedBlog)
-// } else {
-//     res.status(404)
-//     throw new Error("blog not found")
-// }
-// })
-
 const getEditArticle = asyncHandler(async(req, res) => {
     const article = await Article.findById(req.params.id)
 
@@ -64,7 +51,7 @@ const readArticle = asyncHandler(async(req, res) => {
         throw new Error("We couldnt found the article")
     }
 })
-
+ 
 // @desc post articles
 // @route post /api/articles
 // @access Public
@@ -75,10 +62,11 @@ const postArticle = asyncHandler(async(req, res) => {
         image,
         description,
         markdown,
-        } = req.body 
+        } = req.body  
     
-        // console.log(req.file, "image")
+        console.log(req.user, "image")
         const article = await Article.create({
+            user: req.user._id,
             author,
             title,
             image,
