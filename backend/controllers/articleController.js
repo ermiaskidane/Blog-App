@@ -1,20 +1,47 @@
 import asyncHandler from "express-async-handler"
 import Article from "../models/article.js"
  
-
 // @desc get all articles
 // @route get /api/articles/all
 // @access Public
 const getArticle = asyncHandler(async(req, res) => {
-    const fetchedBlog = await Article.find().sort({ createdAt: "desc"})
+    const pageSize =  3
+    const page = Number(req.query.pageNumber) || 1
 
-if(fetchedBlog){
-    res.json(fetchedBlog)
-} else {
-    res.status(404)
-    throw new Error("blog not found")
-}
+    const keyword = req.query.keyword ? {
+        name: {
+            $regex: req.query.keyword,
+            $options: "i"
+        }
+    } : {}
+    
+    const count = await Article.countDocuments({...keyword})
+    const fetchedBlog = await Article.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1)).sort({ createdAt: "desc"})
+
+    res.json({ fetchedBlog, page, pages: Math.ceil(count/pageSize)})
+    // const fetchedBlog = await Article.find().sort({ createdAt: "desc"})
+
+// if(fetchedBlog){
+//     res.json(fetchedBlog)
+// } else {
+//     res.status(404)
+//     throw new Error("blog not found")
+// }
 })
+
+// @desc get all articles
+// @route get /api/articles/all
+// @access Public
+// const getArticle = asyncHandler(async(req, res) => {
+//     const fetchedBlog = await Article.find().sort({ createdAt: "desc"})
+
+// if(fetchedBlog){
+//     res.json(fetchedBlog)
+// } else {
+//     res.status(404)
+//     throw new Error("blog not found")
+// }
+// })
 
 const getEditArticle = asyncHandler(async(req, res) => {
     const article = await Article.findById(req.params.id)
