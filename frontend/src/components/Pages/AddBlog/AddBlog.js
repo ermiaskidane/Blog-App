@@ -12,6 +12,12 @@ const AddBlog = ({history}) => {
     const [markdown, setMarkdown] = useState("")
     const [uploading, setUploading] = useState(false)
 
+   
+    const dispatch = useDispatch()
+ 
+    const userLogin = useSelector((state) => state.userLogin)
+    const { loading, error, userInfo } = userLogin
+
     const uploadFileHandler = async (e) => {
         console.log(e.target.files)
         const file = e.target.files[0]
@@ -19,20 +25,24 @@ const AddBlog = ({history}) => {
         formData.append('image', file)
         setUploading(true)
     
-        try {
-          const config = {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
+        if(userInfo) {
+          try {
+            const config = {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            }
+      
+            const { data } = await axios.post('/api/upload', formData, config)
+      
+            setImage(data)
+            setUploading(false)
+          } catch (error) {
+            console.error(error)
+            setUploading(false)
           }
-    
-          const { data } = await axios.post('/api/upload', formData, config)
-    
-          setImage(data)
-          setUploading(false)
-        } catch (error) {
-          console.error(error)
-          setUploading(false)
+        } else {
+          history.push("/sign-in")
         }
       }
 
@@ -40,13 +50,27 @@ const AddBlog = ({history}) => {
         e.preventDefault()
         const data = {author, title, image, description, markdown}
         
-        const articleData = async () => {
-            const blogPost = await axios.post("/api/articles", data)
+        
+
+        if(userInfo) {
+
+          const config = {
+            headers: {
+               "Content-Type": "application/json",
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+          }
+          const articleData = async () => {
+            const blogPost = await axios.post("/api/articles", data, config)
             return blogPost
         }
 
-        articleData()
-        history.push("/")
+          articleData()
+          history.push("/")
+        } else {
+          history.push("/sign-in")
+        }
+
     }
     
     return (
