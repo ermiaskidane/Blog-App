@@ -12,7 +12,7 @@ const router = express.Router()
 
 router.get("/all", getArticle)
 
-router.post("/", postArticle)
+router.route("/").post(protect, postArticle) 
 
 router.get("/read/:slug", readArticle)
 
