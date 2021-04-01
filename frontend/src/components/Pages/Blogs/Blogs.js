@@ -6,11 +6,16 @@ import "./Blogs.scss"
 const Blogs = () => {
     const [blogs, setBlogs] = useState([])
     
+    const keyword = match.params.keyword || ""
+ 
+    const pageNumber = match.params.pageNumber || 1
+
+    
     useEffect(() => {
         const getBlogs = async () => {
-            const { data } = await axios.get(`/api/articles/all`)
+            const { data } = await axios.get(`/api/articles/all?keyword=${keyword}&pageNumber=${pageNumber}`)
             console.log(data)
-            setBlogs(data)
+            setBlogs(data.fetchedBlog)
         }
 
         getBlogs()
