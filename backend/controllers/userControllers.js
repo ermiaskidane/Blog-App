@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler"
 import generateToken from "../utilis/generateToken.js"
 import User from "../models/userModel.js"
-
+ 
 // @desc    Auth user & get token
 // @route   POST /api/users/login
 // @access  Public

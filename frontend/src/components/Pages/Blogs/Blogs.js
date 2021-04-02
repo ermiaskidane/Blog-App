@@ -1,20 +1,33 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from "react-router-dom"
+
+import Paginate from "../../Paginate/Paginate"
 import axios from "axios"
 import "./Blogs.scss"
 
-const Blogs = () => {
+const Blogs = ({ match}) => {
+
     const [blogs, setBlogs] = useState([])
+    const [page, setPage] = useState()
+    const [pages, setPages] = useState()
+
+    const keyword = match.params.keyword || ""
+ 
+    const pageNumber = match.params.pageNumber || 1
+
     
     useEffect(() => {
         const getBlogs = async () => {
-            const { data } = await axios.get(`/api/articles/all`)
+            const { data } = await axios.get(`/api/articles/divideAll?keyword=${keyword}&pageNumber=${pageNumber}`)
             console.log(data)
-            setBlogs(data)
+            setPage(data.page)
+            setPages(data.pages)
+            setBlogs(data.fetchedBlog)
         }
 
         getBlogs()
-    }, [])
+    }, [pageNumber, keyword])
+     
     return (
       <div className='blogs'>
         <h1>All of the Blogs</h1>
@@ -38,6 +51,8 @@ const Blogs = () => {
                    ))
                }
             </ul>
+
+            <Paginate pages={pages} page={page} keyword={keyword ? keyword : ""}/>
           </div>
         </div>
       </div>

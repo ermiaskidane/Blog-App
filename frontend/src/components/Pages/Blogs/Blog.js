@@ -24,7 +24,7 @@ const Blog = ({match, history}) => {
         setLoading(true)
         const getBlogs = async () => {
             const { data } = await axios.get("/api/articles/all/")
-            // console.log(data)
+            console.log(data)
             const customData = []
             for(let i=0; i<8; i++){
                 customData.push(data[i])
@@ -36,6 +36,7 @@ const Blog = ({match, history}) => {
         getBlogs()
     },[])
 
+    console.log(allBlogs)
     return (
       <div className='blog'>
           <div className="blog__content">

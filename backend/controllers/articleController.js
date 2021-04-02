@@ -3,17 +3,38 @@ import Article from "../models/article.js"
  
 
 // @desc get all articles
+// @route get /api/articles/divideAll
+// @access Public
+const getDividedArticle = asyncHandler(async(req, res) => {
+    const pageSize =  3
+    const page = Number(req.query.pageNumber) || 1
+
+    const keyword = req.query.keyword ? {
+        name: {
+            $regex: req.query.keyword,
+            $options: "i"
+        }
+    } : {}
+    
+    const count = await Article.countDocuments({...keyword})
+    const fetchedBlog = await Article.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1)).sort({ createdAt: "desc"})
+
+    res.json({ fetchedBlog, page, pages: Math.ceil(count/pageSize)})
+
+})
+
+// @desc get all articles
 // @route get /api/articles/all
 // @access Public
 const getArticle = asyncHandler(async(req, res) => {
-    const fetchedBlog = await Article.find().sort({ createdAt: "desc"})
+        const fetchedBlog = await Article.find().sort({ createdAt: "desc"})
 
-if(fetchedBlog){
-    res.json(fetchedBlog)
-} else {
-    res.status(404)
-    throw new Error("blog not found")
-}
+        if(fetchedBlog){
+            res.json(fetchedBlog)
+        } else {
+            res.status(404)
+            throw new Error("blog not found")
+        }
 })
 
 const getEditArticle = asyncHandler(async(req, res) => {
@@ -37,7 +58,7 @@ const readArticle = asyncHandler(async(req, res) => {
         throw new Error("We couldnt found the article")
     }
 })
-
+ 
 // @desc post articles
 // @route post /api/articles
 // @access Public
@@ -48,10 +69,11 @@ const postArticle = asyncHandler(async(req, res) => {
         image,
         description,
         markdown,
-        } = req.body 
+        } = req.body  
     
-        // console.log(req.file, "image")
+        console.log(req.user, "image")
         const article = await Article.create({
+            user: req.user._id,
             author,
             title,
             image,
@@ -95,4 +117,4 @@ const deleteArticle = asyncHandler(async(req, res) => {
     }
 })
 
-export {getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle }
+export {getDividedArticle, getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle }
