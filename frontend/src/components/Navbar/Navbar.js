@@ -66,11 +66,15 @@ const Navbar = () => {
                            </Link>
                        </li>
                        {userInfo ? (
-                           <li className="nav-item">
-                            <Link to="/" className="nav-links" 
-                            onClick={logoutHandler}>
+                           <li className="nav-item nav-item-userInfo">
+                            <Link to="/" className="nav-links nav-userInfo" 
+                            >
                                 {userInfo.name}
                             </Link>
+                            <div className="nav-dropdown">
+                                <p>Profile</p>
+                                <p onClick={logoutHandler}>Logout</p>
+                            </div>
                            </li>
                        ):(
                         <li className="nav-item">
