@@ -1,5 +1,6 @@
 import express from "express"  
 import {
+     getDividedArticle,
      getArticle,
      postArticle,
      readArticle,
@@ -9,6 +10,8 @@ import {
     } from "../controllers/articleController.js"
   
 const router = express.Router()
+
+router.get("/divideAll", getDividedArticle)
 
 router.get("/all", getArticle)
 
