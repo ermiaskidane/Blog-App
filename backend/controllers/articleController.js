@@ -26,6 +26,7 @@ const getDividedArticle = asyncHandler(async(req, res) => {
 // @desc get all articles
 // @route get /api/articles/all
 // @access Public
+
 const getArticle = asyncHandler(async(req, res) => {
         const fetchedBlog = await Article.find().sort({ createdAt: "desc"})
 
