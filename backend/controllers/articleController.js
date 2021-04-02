@@ -3,9 +3,9 @@ import Article from "../models/article.js"
  
 
 // @desc get all articles
-// @route get /api/articles/all
+// @route get /api/articles/sivideAll
 // @access Public
-const getArticle = asyncHandler(async(req, res) => {
+const getDividedArticle = asyncHandler(async(req, res) => {
     const pageSize =  3
     const page = Number(req.query.pageNumber) || 1
 
@@ -28,6 +28,20 @@ const getArticle = asyncHandler(async(req, res) => {
 //     res.status(404)
 //     throw new Error("blog not found")
 // }
+})
+// @desc get all articles
+// @route get /api/articles/all
+// @access Public
+
+const getArticle = asyncHandler(async(req, res) => {
+        const fetchedBlog = await Article.find().sort({ createdAt: "desc"})
+
+        if(fetchedBlog){
+            res.json(fetchedBlog)
+        } else {
+            res.status(404)
+            throw new Error("blog not found")
+        }
 })
 
 const getEditArticle = asyncHandler(async(req, res) => {
@@ -110,4 +124,4 @@ const deleteArticle = asyncHandler(async(req, res) => {
     }
 })
 
-export {getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle }
+export {getDividedArticle, getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle }
