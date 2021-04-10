@@ -9,6 +9,7 @@ const Blog = ({match, history}) => {
     const [blog, setBlog] = useState("")
     const [allBlogs, setAllBlogs] = useState([])
     const [loading, setLoading] =useState(false)
+    const [vote, setVote] = useState(0)
     
     useEffect(() => {
         const getBlog = async () => {
