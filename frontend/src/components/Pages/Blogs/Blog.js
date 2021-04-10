@@ -35,6 +35,26 @@ const Blog = ({match, history}) => {
 
         getBlogs()
     },[])
+    
+    const upVoteHandler = (id, data) => {
+        // setVote(vote++)
+        console.log(id, "blog id")
+        console.log(data)
+
+        // const config = {
+        //     headers: {
+        //        "Content-Type": "application/json",
+        //        Authorization: `Bearer ${userInfo.token}`,
+        //     },
+        //   }
+        const claps =  async () => {
+            const upVotes = await axios.put(`/api/articles/test/${id}`, data)
+            // console.log(upVotes, "blog votes")
+            return upVotes
+        }
+
+        claps()
+    }
 
     console.log(allBlogs)
     return (
@@ -66,7 +86,7 @@ const Blog = ({match, history}) => {
                         {/* <p>{blog.markdown}</p> */}
                     </div>
                     <div className="blog--comments">
-                        <div className="svgIcon">
+                        <div className="svgIcon" onClick={() => upVoteHandler(blog._id, vote)}>
                             <svg>
                                 <use xlinkHref={`${Sprite}#icon-hand`} />
                             </svg>
