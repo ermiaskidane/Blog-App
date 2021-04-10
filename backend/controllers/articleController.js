@@ -106,6 +106,21 @@ const updateArticle = asyncHandler(async(req, res) => {
     }
 })
 
+const updateTestArticle = asyncHandler(async(req, res) => {
+    console.log(req.params.id, "updatetestArticle")
+    const article = await Article.findById(req.params.id)
+    console.log(article)
+    if(article){
+        article.upvotes = req.body.upvotes
+
+    const updateArticle = await article.save()
+    res.json(updateArticle)
+    } else {
+        res.status(404)
+        throw new Error("Article not found")
+    }
+})
+
 const deleteArticle = asyncHandler(async(req, res) => {
     const article = await Article.findById(req.params.id)
 
@@ -118,4 +133,4 @@ const deleteArticle = asyncHandler(async(req, res) => {
     }
 })
 
-export {getDividedArticle, getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle }
+export {getDividedArticle, getArticle, getEditArticle, postArticle, readArticle, updateArticle, updateTestArticle, deleteArticle }
