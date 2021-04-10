@@ -1,5 +1,6 @@
 import express from "express"  
 import {
+    updateTestArticle,
     getDividedArticle,
      getArticle,
      postArticle,
@@ -26,6 +27,8 @@ router.get("/read/:slug", readArticle)
 router.get("/edit/:id", getEditArticle)
 
 router.put("/:id", updateArticle)
+
+router.put("/test/:id", updateTestArticle)
 
 router.delete("/:id", deleteArticle)
 
