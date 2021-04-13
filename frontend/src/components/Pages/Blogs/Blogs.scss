@@ -109,10 +109,27 @@
     transform: scale(1.1);
   }
 
-  .blogs__item__info {
-    padding: 20px 30px 30px;
+ .blogs__item__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: capitalize;
+    padding: 20px 20px 30px;
   }
 
+  .edit--blog {
+    padding: 8px 20px;
+    border-radius: 2px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #1f98f4;
+  }
+  .edit--blog a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
   .blogs__item__text {
     color: #252e48;
     font-size: 18px;
