@@ -38,15 +38,19 @@ const Blogs = ({ match}) => {
                    blogs.map((b) => (
                     <React.Fragment key={b._id}>
                       <li className="blogs__item">
-                        <Link className="blogs__item__link" to={`/blog/${b.slug}`}>
-                            <figure className="blogs__item__pic-wrap" data-category="Adventure">
-                                <img src={b.image ? b.image :`${process.env.PUBLIC_URL}/images/img-9.jpg`} alt="Travel Image" className="blogs__item__img"/>
-                            </figure>
-                            <div className="blogs__item__info">
-                                <h5 className="blogs__item__text">{b.description}</h5>
-                            </div>
-                        </Link>
-                      </li>  
+                         <Link className="blogs__item__link" to={`/blog/${b.slug}`}>
+                             <figure className="blogs__item__pic-wrap" data-category="Adventure">
+                                 <img src={b.image ? b.image :`${process.env.PUBLIC_URL}/images/img-9.jpg`} alt="Travel Image" className="blogs__item__img"/>
+                             </figure>
+                             </Link>
+                             <div className="blogs__item__info">
+                                 <h5 className="blogs__item__text">{b.description}</h5>
+
+                                 <button type="submit" className="edit--blog">
+                                   <Link to={`/update/${b._id}`}>Edit</Link>
+                                   </button>
+                             </div>
+                       </li> 
                   </React.Fragment>
                    ))
                }
