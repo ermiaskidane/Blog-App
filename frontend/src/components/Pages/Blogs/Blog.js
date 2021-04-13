@@ -2,54 +2,64 @@ import React, {useState, useEffect} from 'react'
 import { NavLink } from "react-router-dom";
 import moment from "moment"
 import axios from "axios"
+import { useDispatch, useSelector } from 'react-redux'
+
 import Sprite from "../../../assets/images/sprite.svg";
+import Rating from "./Rating";
 import "./Blog.scss"
 
 const Blog = ({match, history}) => {
-    const [blog, setBlog] = useState("")
+    const [blog, setBlog] = useState({})
     const [allBlogs, setAllBlogs] = useState([])
     const [loading, setLoading] =useState(false)
-    const [vote, setVote] = useState(0)
+    const [rating, setRating] = useState(0)
+    const [comment, setComment] = useState("")
+
+    const dispatch = useDispatch()
+ 
+    const userLogin = useSelector((state) => state.userLogin)
+    const { loading: userLoading, error, userInfo } = userLogin
+
     
     useEffect(() => {
         const getBlog = async () => {
             const { data } = await axios.get(`/api/articles/read/${match.params.slug}`)
-            console.log(data)
+            console.log(data.reviews.length)
             setBlog(data)
         }
 
         getBlog()
-    }, [match.params.slug])
+    }, [])
 
     useEffect(() => {
         setLoading(true)
         const getBlogs = async () => {
             const { data } = await axios.get("/api/articles/all/")
             console.log(data)
-            const customData = []
-            for(let i=0; i<8; i++){
-                customData.push(data[i])
-            }
+            // const customData = []
+            // for(let i=0; i<8; i++){
+            //     customData.push(data[i])
+            // }
             setLoading(false)
-            setAllBlogs(customData)
+            setAllBlogs(data)
         }
 
         getBlogs()
     },[])
-    
-    const upVoteHandler = (id, data) => {
+ 
+    const submitHandler = (id, data) => {
         // setVote(vote++)
         console.log(id, "blog id")
         console.log(data)
 
-        // const config = {
-        //     headers: {
-        //        "Content-Type": "application/json",
-        //        Authorization: `Bearer ${userInfo.token}`,
-        //     },
-        //   }
+        const config = {
+            headers: {
+               "Content-Type": "application/json",
+               Authorization: `Bearer ${userInfo.token}`,
+            },
+          }
         const claps =  async () => {
-            const upVotes = await axios.put(`/api/articles/test/${id}`, data)
+            const upVotes = await axios.post(`/api/articles/test/${id}`, data, config)
             // console.log(upVotes, "blog votes")
             return upVotes
         }
@@ -58,6 +68,8 @@ const Blog = ({match, history}) => {
     }
 
     console.log(allBlogs)
+    console.log(blog, "objects")
+    console.log(blog.reviews, "objects length")
     return (
       <div className='blog'>
           <div className="blog__content">
@@ -87,7 +99,50 @@ const Blog = ({match, history}) => {
                         {/* <p>{blog.markdown}</p> */}
                     </div>
                     <div className="blog--comments">
-                        <div className="svgIcon" onClick={() => upVoteHandler(blog._id, vote)}>
+                        {/* <div className="blog--comments-list">
+                            <h2>Comments</h2>
+                            {blog.reviews.length > 1 ? (
+                                <div className="comment--details">
+                                {blog.reviews.map(review => (
+                                    <div className="detail" key={review._id}>
+                                        <strong>{review.name}</strong>
+                                        <Rating value={review.rating} />
+                                        <p>{review.createdAt.substring(0, 10)}</p>
+                                    </div>
+                                ))} 
+                                <div className="user--comments">
+                                    <h2>Write a customer comments</h2>
+                                    {userInfo ? (
+                                        <form onSubmit={submitHandler}>
+                                            <div className="rating">
+                                                <label htmlFor="rate">Rating</label>
+                                                <select name="rate" id="rate"
+                                                value={rating} onChange={(e) => setRating(e.target.value)}>
+                                                    <option value="">Select...</option>
+                                                    <option value="1">1 - Poor</option>
+                                                    <option value="2">2 - Fail</option>
+                                                    <option value="3">3 - Good</option>
+                                                    <option value="4">4 - Very Good</option>
+                                                    <option value="5">5 - Excellent</option>
+                                                </select>
+                                            </div>
+                                            <div className="comments">
+                                                <label htmlFor="comment">Comment</label>
+                                                <textarea name="comment" id="comment" value={comment}onChange={(e) => setComment(e.target.value)}></textarea>
+                                            </div>
+                                            <button type="submit" className="btn btn-primary"> submit</button>
+                                        </form>
+                                    ): (
+                                        <div className="error-message">
+                                            please login first
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                            ) : (<div>No reviews</div>)}
+                            
+                        </div> */}
+                        {/* <div className="svgIcon" onClick={() => upVoteHandler(blog._id, vote)}>
                             <svg>
                                 <use xlinkHref={`${Sprite}#icon-hand`} />
                             </svg>
@@ -103,7 +158,8 @@ const Blog = ({match, history}) => {
                             <svg>
                                 <use xlinkHref={`${Sprite}#icon-bookmark`} />
                             </svg>
-                        </div>
+                        </div> */}
+
                     </div>
                 </div>
             </div>
