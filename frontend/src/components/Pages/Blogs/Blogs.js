@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux'
 
 import Paginate from "../../Paginate/Paginate"
 import axios from "axios"
@@ -14,6 +15,11 @@ const Blogs = ({ match}) => {
     const keyword = match.params.keyword || ""
  
     const pageNumber = match.params.pageNumber || 1
+    
+    const dispatch = useDispatch()
+ 
+    const userLogin = useSelector((state) => state.userLogin)
+    const { loading: userLoading, error, userInfo } = userLogin
 
     
     useEffect(() => {
@@ -46,9 +52,11 @@ const Blogs = ({ match}) => {
                              <div className="blogs__item__info">
                                  <h5 className="blogs__item__text">{b.description}</h5>
 
-                                 <button type="submit" className="edit--blog">
-                                   <Link to={`/update/${b._id}`}>Edit</Link>
-                                   </button>
+                                 {userInfo ? (
+                                    <button type="submit" className="edit--blog">
+                                       <Link to={`/update/${b._id}`}>Edit</Link>
+                                    </button>
+                                  ): (<div></div>)}
                              </div>
                        </li> 
                   </React.Fragment>
