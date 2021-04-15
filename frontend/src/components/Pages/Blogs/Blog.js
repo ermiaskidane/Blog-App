@@ -75,7 +75,6 @@ const Blog = ({match, history}) => {
                             <img src={blog.image ? blog.image : `/images/img-3.jpg`} alt="passive income"/>
                         </figure>
                         <p>{blog.markdown}</p>
-                        {/* <p>{blog.markdown}</p> */}
                     </div>
                 </div>
             </div>
@@ -86,7 +85,6 @@ const Blog = ({match, history}) => {
                     {allBlogs.map((blog) =>(
                         <li className="content__list"  key={blog._id}>
                             <NavLink to={`/blog/${blog.slug}`}>{blog.title}</NavLink>
-                            {/* <h3 onClick={clickHandler}></h3> */}
                             <p>{blog.author ? blog.author : "Laura vanderkam"}</p>
                             <img src={blog.image ? blog.image : `/images/img-2.jpg`} alt="author"/>
                         </li>
