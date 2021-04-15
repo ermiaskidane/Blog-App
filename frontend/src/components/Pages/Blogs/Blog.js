@@ -74,7 +74,7 @@ const Blog = ({match, history}) => {
                         <figure>
                             <img src={blog.image ? blog.image : `/images/img-3.jpg`} alt="passive income"/>
                         </figure>
-                        <p>{blog.markdown}</p>
+                        <text style={{whiteSpace: "pre-wrap"}} >{blog.markdown}</text>
                     </div>
                 </div>
             </div>
