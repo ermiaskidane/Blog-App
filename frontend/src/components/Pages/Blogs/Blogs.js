@@ -52,7 +52,7 @@ const Blogs = ({ match}) => {
                              <div className="blogs__item__info">
                                  <h5 className="blogs__item__text">{b.description}</h5>
 
-                                 {userInfo ? (
+                                 {userInfo && userInfo._id === b.user ? (
                                     <button type="submit" className="edit--blog">
                                        <Link to={`/update/${b._id}`}>Edit</Link>
                                     </button>
