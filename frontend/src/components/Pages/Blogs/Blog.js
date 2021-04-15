@@ -29,7 +29,7 @@ const Blog = ({match, history}) => {
         }
 
         getBlog()
-    }, [])
+    }, [match.params.slug])
 
     useEffect(() => {
         setLoading(true)
