@@ -44,7 +44,7 @@ const Cards = () => {
                  <CardItem
                  key={blog._id}
                  src={blog.image}
-                 text={blog.markdown}
+                 text={blog.description}
                  label='Adventure'
                  path={`/blog/${blog.slug}`}
                  />
@@ -58,7 +58,7 @@ const Cards = () => {
                     <CardItem
                     key={blog._id}
                     src={blog.image}
-                    text={blog.markdown}
+                    text={blog.description}
                     label='Mystery'
                     path={`/blog/${blog.slug}`}
                   />
