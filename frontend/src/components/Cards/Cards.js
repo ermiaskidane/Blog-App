@@ -25,7 +25,7 @@ const Cards = () => {
     const getBlog = async () => {
       const { data } = await axios.get("/api/articles/all/")
       const customOne = []
-      for(let i = 0; i < 3; i++){
+      for(let i = 2; i < 5; i++){
         customOne.push(data[i])
       }
       setArticleTwo(customOne)
