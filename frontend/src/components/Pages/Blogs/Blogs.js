@@ -15,6 +15,11 @@ const Blogs = ({ match}) => {
     const keyword = match.params.keyword || ""
  
     const pageNumber = match.params.pageNumber || 1
+    
+    const dispatch = useDispatch()
+ 
+    const userLogin = useSelector((state) => state.userLogin)
+    const { loading: userLoading, error, userInfo } = userLogin
 
     const dispatch = useDispatch()
  

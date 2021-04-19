@@ -1,5 +1,6 @@
 import express from "express"  
 import {
+    updateTestArticle,
     getDividedArticle,
      getArticle,
      postArticle,
@@ -31,6 +32,8 @@ router.route("/test/:id").post(protect, updateTestArticle)
 // router.put("/test/:id", updateTestArticle)
 
 router.put("/:id", updateArticle)
+
+router.put("/test/:id", updateTestArticle)
 
 router.delete("/:id", deleteArticle)
 
