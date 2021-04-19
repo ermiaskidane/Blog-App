@@ -6,7 +6,7 @@ import Article from "../models/article.js"
 // @route get /api/articles/divideAll
 // @access Public
 const getDividedArticle = asyncHandler(async(req, res) => {
-    const pageSize =  3
+    const pageSize = 6
     const page = Number(req.query.pageNumber) || 1
 
     const keyword = req.query.keyword ? {

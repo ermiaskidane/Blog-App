@@ -31,7 +31,7 @@ const UpdateArticle = ({match, history}) => {
             return blogPost
         }
         articleData()
-        history.push("/services")
+        history.push("/")
     }
     return (
         <div className="form">

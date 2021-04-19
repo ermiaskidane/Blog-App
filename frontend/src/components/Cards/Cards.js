@@ -32,7 +32,7 @@ const Cards = () => {
     }
 
     getBlog()
-  }, [])
+  }, []) 
 
     return (
       <div className='cards'>
