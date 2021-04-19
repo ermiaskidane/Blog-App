@@ -1,48 +1,74 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useState, useEffect} from 'react'
 import CardItem from "./CardItem"
 import "./Cards.scss"
  
 const Cards = () => {
+  const [articleOne, setArticleOne] = useState([])
+  const [articleTwo, setArticleTwo] = useState([])
+
+  useEffect(() => {
+    const getBlog = async () => {
+      const { data } = await axios.get("/api/articles/all/")
+      console.log(data)
+      const customOne = []
+      for(let i = 0; i < 2; i++){
+        customOne.push(data[i])
+      }
+      setArticleOne(customOne)
+    }
+
+    getBlog()
+  }, [])
+
+  useEffect(() => {
+    const getBlog = async () => {
+      const { data } = await axios.get("/api/articles/all/")
+      const customOne = []
+      for(let i = 2; i < 5; i++){
+        customOne.push(data[i])
+      }
+      setArticleTwo(customOne)
+    }
+
+    getBlog()
+  }, []) 
+
     return (
       <div className='cards'>
         <h1>Check out these EPIC Destinations!</h1>
         <div className='cards__container'>
           <div className='cards__wrapper'>
-            <ul className='cards__items'> 
-              <CardItem
-               src={`${process.env.PUBLIC_URL}/images/img-9.jpg`}
-                // src='images/img-9.jpg'
-                text='Explore the hidden waterfall deep inside the Amazon Jungle'
-                label='Adventure'
-                path='/services'
-              />
-              <CardItem
-                src='images/img-2.jpg'
-                text='Travel through the Islands of Bali in a Private Cruise'
-                label='Luxury'
-                path='/services'
-              />
-            </ul>
-            <ul className='cards__items'>
-              <CardItem
-                src='images/img-3.jpg'
-                text='Set Sail in the Atlantic Ocean visiting Uncharted Waters'
-                label='Mystery'
-                path='/services'
-              />
-              <CardItem
-                src='images/img-4.jpg'
-                text='Experience Football on Top of the Himilayan Mountains'
-                label='Adventure'
-                path='/products'
-              />
-              <CardItem
-                src='images/img-8.jpg'
-                text='Ride through the Sahara Desert on a guided camel tour'
-                label='Adrenaline'
-                path='/sign-up'
-              />
-            </ul>
+          {articleOne.length !== 0 ? (
+              <ul className='cards__items'> 
+               {articleOne.map((blog) => (
+                 <CardItem
+                 key={blog._id}
+                 src={blog.image}
+                 text={blog.description}
+                 label='Adventure'
+                 path={`/blog/${blog.slug}`}
+                 />
+               ))}
+              </ul>
+          ): ( <h2 style={{color: "black", textAlign: "center", fontSize: "15px"}}> No Article Found</h2>)}
+
+            {articleTwo.length !== 0 ? (
+                <ul className='cards__items'>
+                  {articleTwo.map((blog) => (
+                    <CardItem
+                    key={blog._id}
+                    src={blog.image}
+                    text={blog.description}
+                    label='Mystery'
+                    path={`/blog/${blog.slug}`}
+                  />
+                  ))}
+              </ul>
+            ) : (
+              <h2 style={{color: "black", textAlign: "center", fontSize: "15px"}}> No Article Found</h2>
+            ) }
+
           </div>
         </div>
       </div>

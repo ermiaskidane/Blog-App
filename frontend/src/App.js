@@ -12,7 +12,7 @@ import SignUp from "./components/Pages/SignUp"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
 const App = () => {
-
+ 
   return (
     <>
       <Router>

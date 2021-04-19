@@ -1,12 +1,12 @@
 import asyncHandler from "express-async-handler"
 import Article from "../models/article.js"
  
-
+ 
 // @desc get all articles
 // @route get /api/articles/divideAll
 // @access Public
 const getDividedArticle = asyncHandler(async(req, res) => {
-    const pageSize =  3
+    const pageSize = 6
     const page = Number(req.query.pageNumber) || 1
 
     const keyword = req.query.keyword ? {
@@ -106,6 +106,56 @@ const updateArticle = asyncHandler(async(req, res) => {
     }
 })
 
+// const updateTestArticle = asyncHandler(async(req, res) => {
+//     // console.log(req.params.id, "updatetestArticle")
+//     const article = await Article.findById(req.params.id)
+//     // console.log(article)
+//     // console.log(req.body, " where is this")
+    
+//     if(article){
+//         article.upvotes = req.body.upvotes
+
+//     const updateArticle = await article.save()
+//     res.json(updateArticle)
+//     } else {
+//         res.status(404)
+//         throw new Error("Article not found")
+//     }
+// })
+
+const updateTestArticle = asyncHandler(async(req, res) => {
+    const { rating, comment } = req.body
+    // console.log(req.params.id, "updatetestArticle")
+    const article = await Article.findById(req.params.id)
+    // console.log(article)
+    // console.log(req.body, " where is this")
+    
+    if(article){
+        const alreadyReviewed = product.reviews.find(r => r.user.toString() === req.user._id.toString())
+
+        if(alreadyReviewed){
+            res.status(404)
+            throw new Error("Article already reviewed")
+        }
+
+        const review = {
+            name: req.user.name,
+            rating: Number(rating),
+            comment,
+            user: req.user._id
+        }
+
+        article.reviews.push(review)
+        article.numReviews = article.reviews.length
+        await article.save()
+    
+    res.status(201).json({message: "Review added"})
+    } else {
+        res.status(404)
+        throw new Error("Article not found")
+    }
+})
+
 const deleteArticle = asyncHandler(async(req, res) => {
     const article = await Article.findById(req.params.id)
 
@@ -118,4 +168,4 @@ const deleteArticle = asyncHandler(async(req, res) => {
     }
 })
 
-export {getDividedArticle, getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle }
+export {getDividedArticle, getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle, updateTestArticle }

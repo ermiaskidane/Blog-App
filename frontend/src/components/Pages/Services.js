@@ -19,7 +19,7 @@ const Services = () => {
                   <use xlinkHref={`${Sprite}#icon-bookmark`} />
                 </svg>
             </div>
-            
+             
             <div className="services--detail">
                 <div className="detail--container">
                     <div className="detail--title">

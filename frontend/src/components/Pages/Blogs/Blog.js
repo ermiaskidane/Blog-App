@@ -2,18 +2,29 @@ import React, {useState, useEffect} from 'react'
 import { NavLink } from "react-router-dom";
 import moment from "moment"
 import axios from "axios"
+import { useDispatch, useSelector } from 'react-redux'
+
 import Sprite from "../../../assets/images/sprite.svg";
+import Rating from "./Rating";
 import "./Blog.scss"
 
 const Blog = ({match, history}) => {
-    const [blog, setBlog] = useState("")
+    const [blog, setBlog] = useState({})
     const [allBlogs, setAllBlogs] = useState([])
     const [loading, setLoading] =useState(false)
+    const [rating, setRating] = useState(0)
+    const [comment, setComment] = useState("")
+
+    const dispatch = useDispatch()
+ 
+    const userLogin = useSelector((state) => state.userLogin)
+    const { loading: userLoading, error, userInfo } = userLogin
+
     
     useEffect(() => {
         const getBlog = async () => {
             const { data } = await axios.get(`/api/articles/read/${match.params.slug}`)
-            console.log(data)
+            console.log(data.reviews.length)
             setBlog(data)
         }
 
@@ -24,7 +35,7 @@ const Blog = ({match, history}) => {
         setLoading(true)
         const getBlogs = async () => {
             const { data } = await axios.get("/api/articles/all/")
-            console.log(data)
+            console.log(data, "blogs")
             const customData = []
             for(let i=0; i<8; i++){
                 customData.push(data[i])
@@ -34,9 +45,8 @@ const Blog = ({match, history}) => {
         }
 
         getBlogs()
-    },[])
+    },[match.params.slug])
 
-    console.log(allBlogs)
     return (
       <div className='blog'>
           <div className="blog__content">
@@ -62,27 +72,10 @@ const Blog = ({match, history}) => {
                         <figure>
                             <img src={blog.image ? blog.image : `/images/img-3.jpg`} alt="passive income"/>
                         </figure>
-                        <p>{blog.markdown}</p>
+                        <text cols='60' rows='8' style={{whiteSpace: "pre-wrap"}} >{blog.markdown}</text>
                         {/* <p>{blog.markdown}</p> */}
                     </div>
                     <div className="blog--comments">
-                        <div className="svgIcon">
-                            <svg>
-                                <use xlinkHref={`${Sprite}#icon-hand`} />
-                            </svg>
-                            <span>72k</span>
-                        </div>
-                        <div className="svgIcon">
-                            <svg>
-                                <use xlinkHref={`${Sprite}#icon-bubble`} />
-                            </svg>
-                            <span>74 </span>
-                        </div>
-                        <div className="svgIcon">
-                            <svg>
-                                <use xlinkHref={`${Sprite}#icon-bookmark`} />
-                            </svg>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -93,7 +86,6 @@ const Blog = ({match, history}) => {
                     {allBlogs.map((blog) =>(
                         <li className="content__list"  key={blog._id}>
                             <NavLink to={`/blog/${blog.slug}`}>{blog.title}</NavLink>
-                            {/* <h3 onClick={clickHandler}></h3> */}
                             <p>{blog.author ? blog.author : "Laura vanderkam"}</p>
                             <img src={blog.image ? blog.image : `/images/img-2.jpg`} alt="author"/>
                         </li>

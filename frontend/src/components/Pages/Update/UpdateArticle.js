@@ -18,7 +18,7 @@ const UpdateArticle = ({match, history}) => {
         }
 
         editData()
-    }, [])
+    }, []) 
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -31,7 +31,7 @@ const UpdateArticle = ({match, history}) => {
             return blogPost
         }
         articleData()
-        history.push("/services")
+        history.push("/")
     }
     return (
         <div className="form">
