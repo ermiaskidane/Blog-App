@@ -6,6 +6,22 @@ import { JSDOM } from "jsdom"
 
 const dompurify = createDomPurify(new JSDOM().window)
 
+const reviewSchema = mongoose.Schema(
+    {
+        name: { type: String, required: true},
+        rating: { type: Number, required: true},
+        comment: { type: String, },
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: "User",
+        },
+    },
+    {
+        timestamps: true,
+    }
+)
+
 const articleSchema = mongoose.Schema(
     {
         user: {
@@ -20,7 +36,7 @@ const articleSchema = mongoose.Schema(
         title: {
             type: String,
             required: true
-        },
+        }, 
         image: {
             type: String,
             required: true
@@ -31,6 +47,17 @@ const articleSchema = mongoose.Schema(
         markdown: {
             type: String,
             required: true
+        },
+        reviews: [reviewSchema],
+        rating: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+        numReviews: {
+            type: Number,
+            required: true,
+            default: 0,
         },
         createdAt: {
             type: Date,

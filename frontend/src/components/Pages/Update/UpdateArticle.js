@@ -18,7 +18,7 @@ const UpdateArticle = ({match, history}) => {
         }
 
         editData()
-    }, [])
+    }, []) 
 
     const submitHandler = (e) => {
         e.preventDefault()
