@@ -23,6 +23,30 @@ const getDividedArticle = asyncHandler(async(req, res) => {
 
 })
 
+const userArticles = asyncHandler(async(req, res) => {
+    const pageSize = 6
+    const page = Number(req.query.pageNumber) || 1
+
+    const keyword = req.query.keyword ? {
+        name: {
+            $regex: req.query.keyword,
+            $options: "i"
+        }
+    } : {}
+    
+    const count = await Article.countDocuments({...keyword})
+    const fetchedBlog = await Article.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1)).sort({ createdAt: "desc"})
+
+    // console.log(fetchedBlog, "test test ")
+    // console.log(req.query.user, "test test ")
+    let userArts = fetchedBlog.filter(function(e) {
+        return e.user == req.query.userArts
+    } )
+
+    res.json({ userArts, page, pages: Math.ceil(count/pageSize)})
+
+})
+
 // @desc get all articles
 // @route get /api/articles/all
 // @access Public
@@ -168,4 +192,4 @@ const deleteArticle = asyncHandler(async(req, res) => {
     }
 })
 
-export {getDividedArticle, getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle, updateTestArticle }
+export {getDividedArticle, userArticles, getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle, updateTestArticle }
