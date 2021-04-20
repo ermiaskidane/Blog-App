@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import Paginate from "../../Paginate/Paginate"
 import axios from "axios"
-import "./EditArticle.scss"
+import "../Blogs/Blogs.scss"
 
 const EditArticle = ({ match}) => {
 
