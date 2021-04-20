@@ -61,7 +61,11 @@ const Navbar = () => {
                            </Link>
                             <div className="nav-dropdown">
                                 <Link to="/blogs/all">Blogs</Link>
-                                <Link to="/blogs/all">Edit Blogs</Link>
+                                {userInfo ? (
+                                <Link to="/edit">Edit Blogs</Link>
+                                ) : (
+                                    <></>
+                                )}
                             </div>
                        </li>
                        <li className="nav-item">
