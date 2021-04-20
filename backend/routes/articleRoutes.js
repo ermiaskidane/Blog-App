@@ -2,6 +2,7 @@ import express from "express"
 import {
     updateTestArticle,
     getDividedArticle,
+    userArticles, 
      getArticle,
      postArticle,
      readArticle,
@@ -16,6 +17,8 @@ import { protect } from "../middleware/authMiddleware.js"
 const router = express.Router()
 
 router.get("/divideAll", getDividedArticle)
+
+router.get("/userBlogs", userArticles)
 
 router.get("/all", getArticle)
 
