@@ -59,6 +59,10 @@ const Navbar = () => {
                            <Link to="/blogs/all" className="nav-links" onClick={closeMobileMenu}>
                                Blogs
                            </Link>
+                            <div className="nav-dropdown">
+                                <Link to="/blogs/all">Blogs</Link>
+                                <Link to="/blogs/all">Edit Blogs</Link>
+                            </div>
                        </li>
                        <li className="nav-item">
                            <Link to="/products" className="nav-links" onClick={closeMobileMenu}>
