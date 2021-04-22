@@ -57,9 +57,19 @@ const EditArticle = ({ match}) => {
                                  <h5 className="blogs__item__text">{b.description}</h5>
 
                                   {userInfo && userInfo._id === b.user ? (
-                                    <button type="submit" className="edit--blog">
-                                       <Link to={`/update/${b._id}`}>Edit</Link>
-                                    </button>
+                                          
+                                     <div className="blogs__item--button">
+                                      <button type="submit" className="edit--blog">
+                                        <Link to={`/update/${b._id}`}>Edit</Link>
+                                      </button>
+
+                                      <button type="submit" className="delete--blog" onClick={() => DeleteHandler(b._id)}>
+                                        <svg>
+                                          <use xlinkHref={`${Sprite}#icon-bin`} />
+                                        </svg>
+                                      </button>
+                                      </div> 
+                                    
                                   ): (<div></div>)}
                                  
                              </div>
