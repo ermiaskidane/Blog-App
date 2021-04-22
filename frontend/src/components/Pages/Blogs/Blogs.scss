@@ -138,6 +138,29 @@
       text-align: center;
     }
   }
+  
+  .blogs__item--button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    margin-top: 1rem;
+
+    @media only screen and (max-width: 1000px) {
+      margin-top: 0;
+    }
+
+    @media only screen and (max-width: 900px) {
+      flex-direction: column;
+      margin-top: 0;
+    }
+
+    @media only screen and (max-width: 500px) {
+      flex-direction: row;
+      width: min-content;
+    }
+  }
 
   .edit--blog {
     padding: 8px 20px;
