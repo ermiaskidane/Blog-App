@@ -162,7 +162,7 @@
     }
   }
 
-  .edit--blog {
+   .edit--blog {
     padding: 8px 20px;
     border-radius: 2px;
     outline: none;
@@ -178,6 +178,27 @@
       font-size: 12px;
     }
   }
+
+  .delete--blog {
+    padding-top: 13px;
+    border-radius: 2px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+    @media only screen and (max-width: 500px) {
+      padding-left: 13px;
+    }
+  }
+
+  .delete--blog svg {
+    width: 30px;
+    height: 30px;
+    fill: #ff0055;
+    cursor: pointer;
+  }
+
 
   .blogs__item__text {
     color: #252e48;
