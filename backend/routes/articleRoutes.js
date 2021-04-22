@@ -38,6 +38,8 @@ router.put("/:id", updateArticle)
 
 router.put("/test/:id", updateTestArticle)
 
-router.delete("/:id", deleteArticle)
+// router.delete("/:id", deleteArticle)
+
+router.route("/:id").delete(protect, deleteArticle)
 
 export default router 
