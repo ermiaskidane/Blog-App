@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux'
 
 import Paginate from "../../Paginate/Paginate"
+import Sprite from "../../../assets/images/sprite.svg";
 import axios from "axios"
 import "../Blogs/Blogs.scss"
 
