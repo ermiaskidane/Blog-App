@@ -23,6 +23,9 @@ const getDividedArticle = asyncHandler(async(req, res) => {
 
 })
 
+// @desc get only user articles
+// @route get /api/articles/userBlogs
+// @access Private
 const userArticles = asyncHandler(async(req, res) => {
     const pageSize = 6
     const page = Number(req.query.pageNumber) || 1
@@ -112,6 +115,9 @@ const postArticle = asyncHandler(async(req, res) => {
         }
 })
 
+// @desc update specific articles
+// @route put /api/articles/:id
+// @access Private
 const updateArticle = asyncHandler(async(req, res) => {
     const article = await Article.findById(req.params.id)
 
@@ -160,16 +166,19 @@ const updateTestArticle = asyncHandler(async(req, res) => {
     }
 })
 
+// @desc remove specific articles
+// @route delete /api/articles/:id
+// @access Private
 const deleteArticle = asyncHandler(async(req, res) => {
     const article = await Article.findById(req.params.id)
-
+    // if(article && article.user == req.query.userArts)
     if(article) {
         await article.remove()
-        res.json({message: "article have been reomved"})
+        res.json({message: "article has been removed"})
     } else {
         res.status(404)
         throw new Error("Article not Found")
     }
-})
+}) 
 
 export {getDividedArticle, userArticles, getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle, updateTestArticle }
