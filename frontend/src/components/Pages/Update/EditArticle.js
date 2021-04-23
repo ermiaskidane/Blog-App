@@ -12,6 +12,7 @@ const EditArticle = ({ match}) => {
     const [userBlogs, setUserBlogs] = useState([])
     const [page, setPage] = useState()
     const [pages, setPages] = useState()
+    const [messageDelete, setMessageDelete] = useState("")
 
     const keyword = match.params.keyword || ""
  
@@ -35,9 +36,29 @@ const EditArticle = ({ match}) => {
         }
 
         getBlogs()
-    }, [pageNumber, keyword, userArts])
+    }, [pageNumber, keyword, userArts, messageDelete])
+    
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        setMessageDelete("")
+       }, 3000);
+     },[messageDelete]);
+    
+    const DeleteHandler = async (id) => { 
+        const config = {
+          headers: {
+             "Content-Type": "application/json",
+              Authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+
+        const removeBlog = await axios.delete(`/api/articles/${id}`, config)
+
+        setMessageDelete(removeBlog.data.message)
+   }
      
-    console.log(userInfo, "blogs app")
+    
+ 
     return (
       <div className='blogs'>
         <h1>All of the Blogs</h1>
