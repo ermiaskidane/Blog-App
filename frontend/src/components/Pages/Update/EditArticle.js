@@ -82,7 +82,7 @@ const EditArticle = ({ match}) => {
             ) : ( <h2 style={{color: "black", textAlign: "center", fontSize: "14px"}}> Only the Author can Edit</h2>)}
             
             {userBlogs.length !== 0 ?(
-                <Paginate pages={pages} page={page} keyword={keyword ? keyword : ""}/>
+                <Paginate path="edit" pages={pages} page={page} keyword={keyword ? keyword : ""}/>
             ): (
                 <></>
             )}
