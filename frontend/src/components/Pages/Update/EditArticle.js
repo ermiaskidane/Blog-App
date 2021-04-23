@@ -6,6 +6,7 @@ import Paginate from "../../Paginate/Paginate"
 import Sprite from "../../../assets/images/sprite.svg";
 import axios from "axios"
 import "../Blogs/Blogs.scss"
+import "./EditArticle.scss"
 
 const EditArticle = ({ match}) => {
 
