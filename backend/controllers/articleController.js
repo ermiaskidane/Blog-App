@@ -37,8 +37,6 @@ const userArticles = asyncHandler(async(req, res) => {
     const count = await Article.countDocuments({...keyword})
     const fetchedBlog = await Article.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1)).sort({ createdAt: "desc"})
 
-    // console.log(fetchedBlog, "test test ")
-    // console.log(req.query.user, "test test ")
     let userArts = fetchedBlog.filter(function(e) {
         return e.user == req.query.userArts
     } )
@@ -130,29 +128,11 @@ const updateArticle = asyncHandler(async(req, res) => {
     }
 })
 
-// const updateTestArticle = asyncHandler(async(req, res) => {
-//     // console.log(req.params.id, "updatetestArticle")
-//     const article = await Article.findById(req.params.id)
-//     // console.log(article)
-//     // console.log(req.body, " where is this")
-    
-//     if(article){
-//         article.upvotes = req.body.upvotes
-
-//     const updateArticle = await article.save()
-//     res.json(updateArticle)
-//     } else {
-//         res.status(404)
-//         throw new Error("Article not found")
-//     }
-// })
 
 const updateTestArticle = asyncHandler(async(req, res) => {
     const { rating, comment } = req.body
-    // console.log(req.params.id, "updatetestArticle")
+
     const article = await Article.findById(req.params.id)
-    // console.log(article)
-    // console.log(req.body, " where is this")
     
     if(article){
         const alreadyReviewed = product.reviews.find(r => r.user.toString() === req.user._id.toString())
