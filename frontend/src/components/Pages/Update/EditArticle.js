@@ -41,6 +41,7 @@ const EditArticle = ({ match}) => {
     return (
       <div className='blogs'>
         <h1>All of the Blogs</h1>
+        {messageDelete && <h2 className="delete--message">{messageDelete}</h2>}
         <div className='blogs__container'>
           <div className='blogs__wrapper'>
             {userBlogs.length !== 0 ? (
