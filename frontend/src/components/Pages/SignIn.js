@@ -29,8 +29,8 @@ const SignIn = ({history}) => {
  
     return (
         <div className="sign-in">
-            <h1 className="signIn--title">Sing Up</h1>
-            {error && <div style={{fontSize: "10px"}}>{error}</div>}
+            <h1 className="signIn--title">Sing In</h1>
+            {error && <div style={{fontSize: "10px", background: "#ff0055", padding: "4px 2px "}}>{error}</div>}
             {loading && <div style={{fontSize: "10px"}}>Loading...</div>}
             <form onSubmit={submitHandler}>
                 <div className="form--email">
