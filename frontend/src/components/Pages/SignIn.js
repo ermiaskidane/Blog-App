@@ -40,6 +40,7 @@ const SignIn = ({history}) => {
                     id="email" 
                     placeholder="Enter Email"
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                     />
                 </div>
                 <div className="form--password">
@@ -49,6 +50,7 @@ const SignIn = ({history}) => {
                     id="password" 
                     placeholder="Enter password"
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                     />
                 </div>
 
