@@ -47,6 +47,7 @@ const SignUp = ({history}) => {
                     placeholder="Enter Name"
                     value={name} 
                     onChange={(e) => setName(e.target.value)}
+                    required
                     />
                 </div>
                 <div className="form--email">
@@ -57,6 +58,7 @@ const SignUp = ({history}) => {
                     placeholder="Enter Email"
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                     />
                 </div>
                 <div className="form--password">
@@ -67,16 +69,18 @@ const SignUp = ({history}) => {
                     placeholder="Enter password"
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                     />
                 </div>
                 <div className="form--confirmPassword">
                     <label htmlFor="email">Confirm Password</label>
                     <input 
-                    type="confirmPassword" 
+                    type="Password" 
                     id="confirmPassword" 
                     placeholder="Confirm Password"
                     value={confirmPassword} 
                     onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
                     />
                 </div>
 
