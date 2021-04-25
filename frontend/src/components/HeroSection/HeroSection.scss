@@ -42,6 +42,10 @@ video {
 .hero-btns {
   display: flex;
   margin-top: 32px;
+  
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 }
 
 .hero-btns .btn {
