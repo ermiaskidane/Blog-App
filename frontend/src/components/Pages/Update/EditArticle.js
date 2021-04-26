@@ -8,7 +8,7 @@ import axios from "axios"
 import "../Blogs/Blogs.scss"
 import "./EditArticle.scss"
 
-const EditArticle = ({ match}) => {
+const EditArticle = ({ history, match}) => {
 
     const [userBlogs, setUserBlogs] = useState([])
     const [page, setPage] = useState()
@@ -24,19 +24,23 @@ const EditArticle = ({ match}) => {
     const userLogin = useSelector((state) => state.userLogin)
     const { loading: userLoading, error, userInfo } = userLogin
 
-    const userArts = userInfo._id || ""
+    const userArts = userInfo ? userInfo._id : ""
 
     
     useEffect(() => {
-        const getBlogs = async () => {
-            const { data } = await axios.get(`/api/articles/userBlogs?keyword=${keyword}&pageNumber=${pageNumber}&userArts=${userArts}`)
-            console.log(data)
-            setPage(data.page)
-            setPages(data.pages)
-            setUserBlogs(data.userArts)
-        }
+        if(userInfo) {
 
-        getBlogs()
+        const getBlogs = async () => {
+          const { data } = await axios.get(`/api/articles/userBlogs?keyword=${keyword}&pageNumber=${pageNumber}&userArts=${userArts}`)
+          setPage(data.page)
+          setPages(data.pages)
+          setUserBlogs(data.userArts)
+      }
+
+      getBlogs() 
+      } else {
+        history.push("/")
+      }
     }, [pageNumber, keyword, userArts, messageDelete])
     
     useEffect(() => {
