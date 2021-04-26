@@ -77,7 +77,6 @@ const getEditArticle = asyncHandler(async(req, res) => {
 const readArticle = asyncHandler(async(req, res) => {
     const article = await Article.findOne({slug:req.params.slug})
     if(article){
-        // console.log(article)
         res.json(article)
     } else {
         res.status(404)
