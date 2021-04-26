@@ -129,7 +129,7 @@
     padding: 20px 20px 30px;
 
     @media only screen and (max-width: 1000px) {
-      padding: 0 20px 20px;
+      padding: 10px 20px 20px;
       text-align: center;
     }
     @media only screen and (max-width: 500px) {
@@ -169,6 +169,10 @@
     border: none;
     cursor: pointer;
     background-color: #1f98f4;
+     
+     @media only screen and (max-width: 500px) {
+      padding: 6px 15px;
+    }
   }
   .edit--blog a {
     color: #fff;
@@ -186,9 +190,14 @@
     border: none;
     cursor: pointer;
     background-color: transparent;
+    
+    @media only screen and (max-width: 900px) {
+       padding-top: 13px;
+     }
 
     @media only screen and (max-width: 500px) {
       padding-left: 13px;
+      padding-top: 0;
     }
   }
 
@@ -197,6 +206,11 @@
     height: 30px;
     fill: #ff0055;
     cursor: pointer;
+    
+    @media only screen and (max-width: 500px) {
+      width: 23px;
+      height: 23px;
+    }
   }
 
 
