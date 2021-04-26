@@ -1,24 +1,32 @@
 import React, {useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
 import axios from "axios"
 import "../AddBlog/AddBlog.scss"
-// import "../../App.css"
 
 const UpdateArticle = ({match, history}) => {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [markdown, setMarkdown] = useState("")
     
+    const userLogin = useSelector((state) => state.userLogin)
+    const { loading: userLoading, error, userInfo } = userLogin
+    
     useEffect(() => {
-        const editData = async () => {
-            const { data } = await axios.get(`/api/articles/edit/${match.params.id}`)
-            setTitle(data.title)
-            setDescription(data.description)
-            setMarkdown(data.markdown)
+        if(userInfo) {
+            const editData = async () => {
+                const { data } = await axios.get(`/api/articles/edit/${match.params.id}`)
+                setTitle(data.title)
+                setDescription(data.description)
+                setMarkdown(data.markdown)
+            }
+    
+            editData()
+        } else {
+            history.push("/sign-in")
         }
-
-        editData()
-    }, []) 
+        
+    }, [userInfo])
 
     const submitHandler = (e) => {
         e.preventDefault()
