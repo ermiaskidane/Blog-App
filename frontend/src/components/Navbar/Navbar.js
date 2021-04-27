@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
+import SearchInput from "./Search"
 import { Button } from '../Button/Button'
 import { logout } from "../../store/actions/userActions";
 import "./Navbar.scss"
@@ -46,6 +47,7 @@ const Navbar = () => {
                    <Link to="/blogs/all" className="navbar-logo" onClick={closeMobileMenu}>
                        TRVL <i className="fab fa-typo3"/>
                    </Link>
+                   <SearchInput />
                    <div className="menu-icon" onClick={handleClick}>
                        <i className={click ? "fas fa-times" : "fas fa-bars"} />
                    </div>
