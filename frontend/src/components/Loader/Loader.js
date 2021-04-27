@@ -1,18 +1,25 @@
-import React from "react"
-// import { Spinner } from "react-bootstrap"
+import React from 'react';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
+}));
 
 const Loader = () => {
+    const classes = useStyles();
+  
     return (
-        <div 
-            style={{ 
-                width: "100px",
-                height: "100px", 
-                margin: "auto", 
-                display: "block"
-            }}>
-            <span className="sr-only">Loading...</span>
-        </div>
-    )
-}
+      <div>
+        <Backdrop className={classes.backdrop} open>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      </div>
+    );
+  }
 
-export default Loader
+  export default Loader
