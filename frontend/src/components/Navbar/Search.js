@@ -7,12 +7,11 @@ const SearchInput = ({ history }) => {
 
   const submitHandler = (e) => {
     e.preventDefault()
-    // if (keyword.trim()) {
-    //   history.push(`/search/${keyword}`)
-    // } else {
-    //   history.push('/')
-    // }
-    console.log("hello we are searching")
+    if (keyword.trim()) {
+      history.push(`/blogs/search/${keyword}`)
+    } else {
+      history.push('/blogs/all')
+    }
   } 
 
   return (
