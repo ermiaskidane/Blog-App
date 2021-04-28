@@ -1,6 +1,7 @@
 import express from "express"  
-import {
+import { 
     getDividedArticle,
+    userArticles, 
      getArticle,
      postArticle,
      readArticle,
@@ -13,12 +14,14 @@ import { protect } from "../middleware/authMiddleware.js"
   
     // router.route("/").get(getProducts).post(protect, admin, createProduct)
 const router = express.Router()
-
+ 
 router.get("/divideAll", getDividedArticle)
+
+router.get("/userBlogs", userArticles)
 
 router.get("/all", getArticle)
 
-// router.post("/", postArticle) 
+// router.post("/", postArticle)  
 
 router.route("/").post(protect, postArticle)  
 
@@ -32,6 +35,8 @@ router.route("/test/:id").post(protect, updateTestArticle)
 
 router.put("/:id", updateArticle)
 
-router.delete("/:id", deleteArticle)
+// router.delete("/:id", deleteArticle)
+
+router.route("/:id").delete(protect, deleteArticle)
 
 export default router 

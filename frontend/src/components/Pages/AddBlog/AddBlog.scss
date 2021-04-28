@@ -17,6 +17,11 @@
   h1 {
     padding-top: 1rem;
     text-align: center;
+    font-size: 2rem;
+
+    @media only screen and (max-width: 600px) {
+      font-size: 1.5rem;
+    }
   }
 
   #form-products {
@@ -47,13 +52,13 @@
     border-radius: 3px;
     border: none;
   }
-  
-   .form__fields input[type="file"] {
+
+  .form__fields input[type="file"] {
     font-size: 14px;
     background: #fff;
     border-radius: 4px;
     // box-shadow: 5px 5px 10px #585858;
-     width: inherit;
+    width: inherit;
     outline: none;
   }
 
@@ -68,7 +73,7 @@
   }
 
   ::-webkit-file-upload-button:hover {
-     background: #616161;
+    background: #616161;
   }
 
   .form__fields input[type="file"] {
@@ -131,4 +136,8 @@
     outline: none;
     cursor: pointer;
   }
+}
+
+.form--update {
+  justify-content: flex-start;
 }

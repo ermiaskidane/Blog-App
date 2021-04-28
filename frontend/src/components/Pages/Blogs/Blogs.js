@@ -14,7 +14,7 @@ const Blogs = ({ match}) => {
 
     const keyword = match.params.keyword || ""
  
-    const pageNumber = match.params.pageNumber || 1
+    const pageNumber = match.params.pageNumber || ""
 
     const dispatch = useDispatch()
  
@@ -25,7 +25,7 @@ const Blogs = ({ match}) => {
     useEffect(() => {
         const getBlogs = async () => {
             const { data } = await axios.get(`/api/articles/divideAll?keyword=${keyword}&pageNumber=${pageNumber}`)
-            console.log(data)
+
             setPage(data.page)
             setPages(data.pages)
             setBlogs(data.fetchedBlog)
@@ -34,7 +34,6 @@ const Blogs = ({ match}) => {
         getBlogs()
     }, [pageNumber, keyword])
      
-    console.log(userInfo, "blogs app")
     return (
       <div className='blogs'>
         <h1>All of the Blogs</h1>
@@ -53,12 +52,6 @@ const Blogs = ({ match}) => {
                              </Link>
                              <div className="blogs__item__info">
                                  <h5 className="blogs__item__text">{b.description}</h5>
-
-                                  {userInfo && userInfo._id === b.user ? (
-                                    <button type="submit" className="edit--blog">
-                                       <Link to={`/update/${b._id}`}>Edit</Link>
-                                    </button>
-                                  ): (<div></div>)}
                                  
                              </div>
                        </li>  
@@ -69,7 +62,7 @@ const Blogs = ({ match}) => {
             ) : ( <h2 style={{color: "black", textAlign: "center", fontSize: "14px"}}> No Article Found</h2>)}
             
 
-            <Paginate pages={pages} page={page} keyword={keyword ? keyword : ""}/>
+            <Paginate path="all" pages={pages} page={page} keyword={keyword ? keyword : ""}/>
           </div>
         </div>
       </div>
