@@ -1,30 +1,36 @@
 import React, {useState, useEffect} from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux'
 import axios from "axios"
 import "../AddBlog/AddBlog.scss"
-// import "../../App.css"
 
 const UpdateArticle = ({match, history}) => {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [markdown, setMarkdown] = useState("")
+
+    const userLogin = useSelector((state) => state.userLogin)
+    const { loading: userLoading, error, userInfo } = userLogin
     
     useEffect(() => {
-        const editData = async () => {
-            const { data } = await axios.get(`/api/articles/edit/${match.params.id}`)
-            setTitle(data.title)
-            setDescription(data.description)
-            setMarkdown(data.markdown)
+        if(userInfo) {
+            const editData = async () => {
+                const { data } = await axios.get(`/api/articles/edit/${match.params.id}`)
+                setTitle(data.title)
+                setDescription(data.description)
+                setMarkdown(data.markdown)
+            }
+    
+            editData()
+        } else {
+            history.push("/sign-in")
         }
-
-        editData()
-    }, []) 
+        
+    }, [userInfo]) 
 
     const submitHandler = (e) => {
         e.preventDefault()
         const data = {title, description, markdown}
-        // 60536e4333676b6ad0af3570
-        console.log(data, match.params.id)
         const articleData = async () => {
             const blogPost = await axios.put(`/api/articles/${match.params.id}`, data)
 
@@ -34,7 +40,7 @@ const UpdateArticle = ({match, history}) => {
         history.push("/")
     }
     return (
-        <div className="form">
+        <div className="form form--update">
             <h1>Update Article</h1>
             <form onSubmit={submitHandler} id="form-products">
                 <div className="form__fields">

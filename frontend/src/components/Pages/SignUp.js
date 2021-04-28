@@ -2,6 +2,7 @@ import React, {useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../../store/actions/userActions'
+import Loader from "../Loader/Loader"
 import "./SignUp.scss"
 import "../../App.scss"
  
@@ -35,9 +36,9 @@ const SignUp = ({history}) => {
     return (
         <div className="sign-up">
             <h1 className="signUp--title">Sing Up</h1>
-            {message && <div style={{fontSize: "10px"}}>{message}</div>}
-            {error && <div>{error}</div>}
-            {loading && <div style={{fontSize: "10px"}}>Loading...</div>}
+            {message && <div style={{fontSize: "13px", background: "#ff0055", padding: "4px 2px "}}>{message}</div>}
+            {error && <div style={{fontSize: "13px", background: "#ff0055", padding: "4px 2px "}}>{error}</div>}
+            {loading && <Loader/>}
             <form onSubmit={submitHandler}>
                 <div className="form--name">
                     <label htmlFor="name">Name</label>
@@ -47,6 +48,7 @@ const SignUp = ({history}) => {
                     placeholder="Enter Name"
                     value={name} 
                     onChange={(e) => setName(e.target.value)}
+                    required
                     />
                 </div>
                 <div className="form--email">
@@ -57,6 +59,7 @@ const SignUp = ({history}) => {
                     placeholder="Enter Email"
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                     />
                 </div>
                 <div className="form--password">
@@ -67,16 +70,18 @@ const SignUp = ({history}) => {
                     placeholder="Enter password"
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)}
+                    required
                     />
                 </div>
                 <div className="form--confirmPassword">
                     <label htmlFor="email">Confirm Password</label>
                     <input 
-                    type="confirmPassword" 
+                    type="Password" 
                     id="confirmPassword" 
                     placeholder="Confirm Password"
                     value={confirmPassword} 
                     onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
                     />
                 </div>
 

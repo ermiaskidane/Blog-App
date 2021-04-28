@@ -10,7 +10,6 @@ const Cards = () => {
   useEffect(() => {
     const getBlog = async () => {
       const { data } = await axios.get("/api/articles/all/")
-      console.log(data)
       const customOne = []
       for(let i = 0; i < 2; i++){
         customOne.push(data[i])

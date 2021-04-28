@@ -5,7 +5,6 @@ import axios from "axios"
 import { useDispatch, useSelector } from 'react-redux'
 
 import Sprite from "../../../assets/images/sprite.svg";
-import Rating from "./Rating";
 import "./Blog.scss"
 
 const Blog = ({match, history}) => {
@@ -24,7 +23,6 @@ const Blog = ({match, history}) => {
     useEffect(() => {
         const getBlog = async () => {
             const { data } = await axios.get(`/api/articles/read/${match.params.slug}`)
-            console.log(data.reviews.length)
             setBlog(data)
         }
 
@@ -35,7 +33,6 @@ const Blog = ({match, history}) => {
         setLoading(true)
         const getBlogs = async () => {
             const { data } = await axios.get("/api/articles/all/")
-            console.log(data, "blogs")
             const customData = []
             for(let i=0; i<8; i++){
                 customData.push(data[i])

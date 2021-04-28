@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
+import { Route } from "react-router-dom";
 import { Link } from "react-router-dom"
 import { Button } from '../Button/Button'
+import SearchInput from "./Search"
 import { logout } from "../../store/actions/userActions";
 import "./Navbar.scss"
 
@@ -14,7 +16,7 @@ const Navbar = () => {
 
     const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
-
+ 
     const handleClick = () => setClick(!click)
     const closeMobileMenu = () => setClick(!click)
 
@@ -25,7 +27,7 @@ const Navbar = () => {
         } else {
             setButton(true)
         }
-    }
+    } 
 
     useEffect(() => {
        showButton()
@@ -38,7 +40,6 @@ const Navbar = () => {
         dispatch(logout())
       }
 
-    console.log(userInfo)
     return (
         <>
            <nav className="navbar">
@@ -46,6 +47,8 @@ const Navbar = () => {
                    <Link to="/blogs/all" className="navbar-logo" onClick={closeMobileMenu}>
                        TRVL <i className="fab fa-typo3"/>
                    </Link>
+
+                   <Route render={({history}) => <SearchInput  history={history} />} />
                    <div className="menu-icon" onClick={handleClick}>
                        <i className={click ? "fas fa-times" : "fas fa-bars"} />
                    </div>
@@ -56,9 +59,18 @@ const Navbar = () => {
                            </Link>
                        </li> 
                        <li className="nav-item">
-                           <Link to="/blogs/all" className="nav-links" onClick={closeMobileMenu}>
+                           <Link to="/blogs/all" className="nav-links nav-userInfo" onClick={closeMobileMenu}>
                                Blogs
                            </Link>
+                           <div className="nav-dropdown">
+                                <Link to="/blogs/all">Blogs</Link>
+                                {userInfo ? (
+                                <Link to="/edit">Edit Blogs</Link>
+                                ) : (
+                                    <></>
+                                )}
+                                
+                            </div>
                        </li>
                        <li className="nav-item">
                            <Link to="/products" className="nav-links" onClick={closeMobileMenu}>
@@ -84,16 +96,11 @@ const Navbar = () => {
                        </li>
                        )}
                    </ul>
-                   {/* {button && userName ? (
-                       <div className="nav-links-username" onClick={logoutHandler}>{userName}</div>
-                   ) : (
-                    <Button buttonStyle="btn--outline">SIGN UP</Button>
-                   )} */}
                 </div>
             </nav> 
         </>
     )
-}
+} 
 
 export default Navbar
 

@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 
 import { login } from '../../../store/actions/userActions'
-// import Loader from "../../Loader/Loader"
 import axios from "axios"
 import "./AddBlog.scss"
 

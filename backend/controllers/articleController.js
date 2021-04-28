@@ -1,11 +1,32 @@
 import asyncHandler from "express-async-handler"
 import Article from "../models/article.js"
- 
+  
  
 // @desc get all articles
 // @route get /api/articles/divideAll
 // @access Public
 const getDividedArticle = asyncHandler(async(req, res) => {
+    const pageSize = 6
+    const page = Number(req.query.pageNumber) || 1
+
+    const keyword = req.query.keyword ? {
+        title: {
+            $regex: req.query.keyword,
+            $options: "i"
+        }
+    } : {}
+
+    const count = await Article.countDocuments({...keyword})
+    const fetchedBlog = await Article.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1)).sort({ createdAt: "desc"})
+
+    res.json({ fetchedBlog, page, pages: Math.ceil(count/pageSize)})
+
+})
+
+// @desc get only user articles
+// @route get /api/articles/userBlogs
+// @access Private
+const userArticles = asyncHandler(async(req, res) => {
     const pageSize = 6
     const page = Number(req.query.pageNumber) || 1
 
@@ -19,7 +40,11 @@ const getDividedArticle = asyncHandler(async(req, res) => {
     const count = await Article.countDocuments({...keyword})
     const fetchedBlog = await Article.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1)).sort({ createdAt: "desc"})
 
-    res.json({ fetchedBlog, page, pages: Math.ceil(count/pageSize)})
+    let userArts = fetchedBlog.filter(function(e) {
+        return e.user == req.query.userArts
+    } )
+
+    res.json({ userArts, page, pages: Math.ceil(count/pageSize)})
 
 })
 
@@ -52,7 +77,6 @@ const getEditArticle = asyncHandler(async(req, res) => {
 const readArticle = asyncHandler(async(req, res) => {
     const article = await Article.findOne({slug:req.params.slug})
     if(article){
-        // console.log(article)
         res.json(article)
     } else {
         res.status(404)
@@ -72,7 +96,6 @@ const postArticle = asyncHandler(async(req, res) => {
         markdown,
         } = req.body  
     
-        console.log(req.user, "image")
         const article = await Article.create({
             user: req.user._id,
             author,
@@ -90,6 +113,9 @@ const postArticle = asyncHandler(async(req, res) => {
         }
 })
 
+// @desc update specific articles
+// @route put /api/articles/:id
+// @access Private
 const updateArticle = asyncHandler(async(req, res) => {
     const article = await Article.findById(req.params.id)
 
@@ -106,29 +132,10 @@ const updateArticle = asyncHandler(async(req, res) => {
     }
 })
 
-// const updateTestArticle = asyncHandler(async(req, res) => {
-//     // console.log(req.params.id, "updatetestArticle")
-//     const article = await Article.findById(req.params.id)
-//     // console.log(article)
-//     // console.log(req.body, " where is this")
-    
-//     if(article){
-//         article.upvotes = req.body.upvotes
-
-//     const updateArticle = await article.save()
-//     res.json(updateArticle)
-//     } else {
-//         res.status(404)
-//         throw new Error("Article not found")
-//     }
-// })
-
 const updateTestArticle = asyncHandler(async(req, res) => {
     const { rating, comment } = req.body
-    // console.log(req.params.id, "updatetestArticle")
+
     const article = await Article.findById(req.params.id)
-    // console.log(article)
-    // console.log(req.body, " where is this")
     
     if(article){
         const alreadyReviewed = product.reviews.find(r => r.user.toString() === req.user._id.toString())
@@ -154,18 +161,21 @@ const updateTestArticle = asyncHandler(async(req, res) => {
         res.status(404)
         throw new Error("Article not found")
     }
-})
+}) 
 
+// @desc remove specific articles
+// @route delete /api/articles/:id
+// @access Private
 const deleteArticle = asyncHandler(async(req, res) => {
     const article = await Article.findById(req.params.id)
-
+    // if(article && article.user == req.query.userArts)
     if(article) {
         await article.remove()
-        res.json({message: "article have been reomved"})
+        res.json({message: "article has been removed"})
     } else {
         res.status(404)
         throw new Error("Article not Found")
     }
-})
+}) 
 
-export {getDividedArticle, getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle, updateTestArticle }
+export {getDividedArticle, userArticles, getArticle, getEditArticle, postArticle, readArticle, updateArticle, deleteArticle, updateTestArticle }
