@@ -38,7 +38,7 @@ const Blog = ({match, history}) => {
                 customData.push(data[i])
             }
             setLoading(false)
-            setAllBlogs(data)
+            setAllBlogs(customData)
         }
 
         getBlogs()
