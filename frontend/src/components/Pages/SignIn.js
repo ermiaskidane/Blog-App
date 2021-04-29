@@ -83,8 +83,4 @@ const SignIn = ({ history }) => {
   );
 };
 
-<<<<<<< HEAD
 export default SignIn
-=======
-export default SignIn;
->>>>>>> version-7

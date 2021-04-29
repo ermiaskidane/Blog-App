@@ -48,6 +48,31 @@ const userArticles = asyncHandler(async(req, res) => {
 
 })
 
+// @desc get only user articles
+// @route get /api/articles/userBlogs
+// @access Private
+const userArticles = asyncHandler(async(req, res) => {
+    const pageSize = 6
+    const page = Number(req.query.pageNumber) || 1
+
+    const keyword = req.query.keyword ? {
+        name: {
+            $regex: req.query.keyword,
+            $options: "i"
+        }
+    } : {}
+    
+    const count = await Article.countDocuments({...keyword})
+    const fetchedBlog = await Article.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1)).sort({ createdAt: "desc"})
+
+    let userArts = fetchedBlog.filter(function(e) {
+        return e.user == req.query.userArts
+    } )
+
+    res.json({ userArts, page, pages: Math.ceil(count/pageSize)})
+
+})
+
 // @desc get all articles
 // @route get /api/articles/all
 // @access Public

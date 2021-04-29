@@ -12,7 +12,6 @@ const SearchInput = ({ history }) => {
     } else {
       history.push('/blogs/all')
     }
-    // console.log("hello we are searching")
   } 
 
   return (

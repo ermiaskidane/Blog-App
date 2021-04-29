@@ -1,10 +1,5 @@
 import express from "express"  
-<<<<<<< HEAD
-import {
-    updateTestArticle,
-=======
 import { 
->>>>>>> version-7
     getDividedArticle,
     userArticles, 
      getArticle,
@@ -40,14 +35,8 @@ router.route("/test/:id").post(protect, updateTestArticle)
 
 router.put("/:id", updateArticle)
 
-<<<<<<< HEAD
-router.put("/test/:id", updateTestArticle)
-
-router.delete("/:id", deleteArticle)
-=======
 // router.delete("/:id", deleteArticle)
 
 router.route("/:id").delete(protect, deleteArticle)
->>>>>>> version-7
 
 export default router 

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { Route } from "react-router-dom";
 import { Link } from "react-router-dom"
+import SearchInput from "./Search"
 import { Button } from '../Button/Button'
 import SearchInput from "./Search"
 import { logout } from "../../store/actions/userActions";
