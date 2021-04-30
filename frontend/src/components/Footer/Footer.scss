@@ -86,7 +86,8 @@
 
     @media only screen and (max-width: 500px) {
       flex-direction: column;
-      align-items: center;
+      // align-items: center;
+      margin-left: 20px;
     }
   }
 
@@ -123,7 +124,6 @@
 
     @media only screen and (max-width: 500px) {
       font-size: 14px;
-      padding-left: 1rem;
     }
   }
 

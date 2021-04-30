@@ -47,12 +47,17 @@ const Navbar = () => {
                    <Link to="/blogs/all" className="navbar-logo" onClick={closeMobileMenu}>
                        TRVL <i className="fab fa-typo3"/>
                    </Link>
-
-                   <Route render={({history}) => <SearchInput  history={history} />} />
+                    <div className="searchBar">
+                     <Route render={({history}) => <SearchInput  history={history} />} />
+                    </div>
+                   
                    <div className="menu-icon" onClick={handleClick}>
                        <i className={click ? "fas fa-times" : "fas fa-bars"} />
                    </div>
                    <ul className={click ? "nav-menu active": "nav-menu"}>
+                       <li className="nav-item">
+                       <Route render={({history}) => <SearchInput  history={history} />} />
+                       </li>
                        <li className="nav-item">
                            <Link to="/" className="nav-links" onClick={closeMobileMenu}>
                                Home
@@ -78,12 +83,12 @@ const Navbar = () => {
                            </Link>
                        </li>
                        {userInfo ? (
-                           <li className="nav-item nav-item-userInfo">
+                           <li className="nav-item">
                             <Link to="/" className="nav-links nav-userInfo" 
                             >
                                 {userInfo.name}
                             </Link>
-                            <div className="nav-dropdown">
+                            <div className="nav-dropdown-prof">
                                 <p>Profile</p>
                                 <p onClick={logoutHandler}>Logout</p>
                             </div>

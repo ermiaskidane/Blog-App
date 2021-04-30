@@ -24,11 +24,11 @@ const SearchInput = ({ history }) => {
             className="searchInput--box"
             />
 
-<button type="submit" className="btn btn-primary">
-          submit
+        <button type="submit" className="btn btn-primary">
+          Search
         </button>
     </form>
   )
-}
+} 
 
 export default SearchInput
