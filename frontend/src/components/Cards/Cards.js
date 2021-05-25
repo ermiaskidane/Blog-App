@@ -31,7 +31,7 @@ const Cards = () => {
     }
 
     getBlog()
-  }, []) 
+  }, [data]) 
 
     return (
       <div className='cards'>
