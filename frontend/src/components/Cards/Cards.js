@@ -18,7 +18,7 @@ const Cards = () => {
     }
 
     getBlog()
-  }, [])
+  }, [articleOne, articleTwo])
 
   useEffect(() => {
     const getBlog = async () => {
